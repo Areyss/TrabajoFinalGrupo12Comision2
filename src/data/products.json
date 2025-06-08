@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "imagen": "https://http2.mlstatic.com/D_NQ_NP_956659-MLA83391699886_042025-O.webp",
+    "nombre": "Cafetera eléctrica",
+    "precio": 41500.99,
+    "descripcion": "Cafetera programable con capacidad para 12 tazas y temporizador automático.",
+    "categoria": "electrodomésticos",
+    "disponible": true
+  },
+  {
+    "id": 2,
+    "imagen": "https://http2.mlstatic.com/D_NQ_NP_802785-MLA83213055508_042025-O.webp",
+    "nombre": "Auriculares inalámbricos",
+    "precio": 25200.50,
+    "descripcion": "Auriculares Bluetooth con cancelación de ruido y micrófono integrado.",
+    "categoria": "tecnología",
+    "disponible": true
+  },
+  {
+    "id": 3,
+    "imagen": "https://http2.mlstatic.com/D_Q_NP_2X_904565-MLU76442153799_052024-E.webp",
+    "nombre": "Mochila urbana",
+    "precio": 35600.00,
+    "descripcion": "Mochila resistente al agua con compartimento para notebook de 15 pulgadas.",
+    "categoria": "accesorios",
+    "disponible": true
+  },
+  {
+    "id": 4,
+    "imagen": "https://http2.mlstatic.com/D_NQ_NP_955125-MLA75599726397_042024-O.webp",
+    "nombre": "Zapatillas running",
+    "precio": 75200.99,
+    "descripcion": "Zapatillas deportivas con amortiguación para carrera de alto rendimiento.",
+    "categoria": "calzado",
+    "disponible": true
+  },
+  {
+    "id": 5,
+    "imagen": "https://http2.mlstatic.com/D_Q_NP_2X_909430-MLA81069817046_122024-E.webp",
+    "nombre": "Set de sartenes antiadherentes",
+    "precio": 69700.00,
+    "descripcion": "Juego de 3 sartenes de aluminio con recubrimiento antiadherente libre de PFOA.",
+    "categoria": "cocina",
+    "disponible": true
+  }
+]
