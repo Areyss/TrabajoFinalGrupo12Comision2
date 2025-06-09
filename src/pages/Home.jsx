@@ -9,9 +9,7 @@ import {
     Flex,
 } from "@chakra-ui/react";
 import { useAppColors } from "../../theme/colors";
-import { useColorModeValue } from "../components/ui/color-mode"
-import products from "../data/products.json";
-
+import { useColorModeValue } from "../components/ui/color-mode";
 import { useProductos } from "../hooks/useProductos";
 
 
@@ -22,7 +20,7 @@ const Home = () => {
         <Box py={10} px={5}>
             <Text fontFamily={"sans-serif"} fontSize={30} mb={5} textAlign="center">Lista de productos</Text>
             <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} gap={10}>
-                {products.map((producto) => (
+                {productos.map((producto) => (
                     <Box
                         key={producto.id}
                         bg={useColorModeValue("#3B4147", "gray.800")}

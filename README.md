@@ -25,4 +25,4 @@ El objetivo principal es implementar un CRUD completo de productos, trabajando p
 - 🗺 **Navegación general**: Barra de navegación con enlaces a Home, Favoritos, Crear y vistas de detalle/edición.
 - 🌐 **Integración API externa**: Carga de productos desde https://fakestoreapi.com/products, mapeando la respuesta para incluir favorite y deleted en cada ítem.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+La aplicación fue creada utilizando **Vite** con la plantilla de React, y organizada en componentes reutilizables para una mejor estructura.
