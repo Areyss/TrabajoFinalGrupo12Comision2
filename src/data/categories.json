@@ -1,0 +1,8 @@
+[
+  { "id": 1, "nombre": "electrodomésticos" },
+  { "id": 2, "nombre": "tecnología" },
+  { "id": 3, "nombre": "accesorios" },
+  { "id": 4, "nombre": "calzado" },
+  { "id": 5, "nombre": "cocina" },
+  { "id": 6, "nombre": "varios" }
+]

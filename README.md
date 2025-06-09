@@ -1,12 +1,28 @@
-# React + Vite
+# 📘 Trabajo Práctico Integrador – Programación Visual
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 👨‍💻 Integrantes del grupo
 
-Currently, two official plugins are available:
+| Nombre completo       | Usuario de GitHub        |
+|-----------------------|--------------------------|
+| Ariel Sergio Reyes    | @Areyss                  |
+| Joel Brian Garcia     | @JoelGarcia21            |
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🧠 Descripción del proyecto
 
-## Expanding the ESLint configuration.
+Este proyecto es una aplicación de gestión de productos desarrollada en **React** con **Vite** como parte del Trabajo Práctico Integrador de la materia **Programación Visual**. Se utiliza **Chakra UI** para la interfaz y **React Router Dom** junto con **Context API** para el manejo del estado y la navegación.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+El objetivo principal es implementar un CRUD completo de productos, trabajando primero con datos locales y luego consumiendo una API externa. Además la posibilidad de marcar productos como favoritos.
+
+### 🛠 Funcionalidades implementadas
+
+- 🏠 **Home**: Listado de productos (solo aquellos con deleted: false).
+- 📋 **Lista de Productos**: Mostrar todos los productos en tarjetas estilizadas con Chakra UI.
+- ❤️ **Favoritos**: Vista que filtra y muestra solo los productos marcados como favoritos (favorite: true).
+- 🔍 **Detalle del Producto**: Vista con información completa de un producto (imagen, nombre, precio, descripción, categoría).
+- ➕ **Agregar Producto**: Formulario (Chakra UI) para crear un nuevo producto en datos locales, asignando deleted: false y favorite: false por defecto.
+- 🖊 **Editar Producto**: Formulario precargado para modificar un producto existente en el estado global.
+- 🌎 **Uso de Contexto globales**: Guarda el estado de funciones o variables.
+- 🗺 **Navegación general**: Barra de navegación con enlaces a Home, Favoritos, Crear y vistas de detalle/edición.
+- 🌐 **Integración API externa**: Carga de productos desde https://fakestoreapi.com/products, mapeando la respuesta para incluir favorite y deleted en cada ítem.
+
+La aplicación fue creada utilizando **Vite** con la plantilla de React, y organizada en componentes reutilizables para una mejor estructura.
