@@ -17,9 +17,15 @@ export const ProductosProvider = ({ children }) => {
     console.log("Producto agregado:", nuevoProducto);
   };
   // Función para agregar una categoría
-   const addCategoria = (nombre) => {
+  const addCategoria = (nombre) => {
+    const nombreNormalizado = nombre.trim().toLowerCase();
+    const existe = categorias.some(
+      cat => cat.nombre.trim().toLowerCase() === nombreNormalizado
+    );
+    if (existe) return; // No agregar duplicados
     const id = categorias.length > 0 ? categorias[categorias.length - 1].id + 1 : 1;
     setCategorias([...categorias, { id, nombre }]);
+
   };
 
   const contextValue = useMemo(() => ({
