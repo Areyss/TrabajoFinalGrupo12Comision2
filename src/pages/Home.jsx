@@ -35,15 +35,15 @@ const Home = () => {
                     >
                         <Flex justify="space-between" align="center" mb={2}>
                             <Box fontSize="xl" fontWeight="bold" color={colors.textPrimary}>
-                                {producto.nombre}
+                                {producto.title}
                             </Box>
                         </Flex>
 
                         <Center mb={4}>
                             <Link href={`producto-${producto.id}`} isExternal>
                                 <Image
-                                    src={producto.imagen}
-                                    alt={producto.nombre}
+                                    src={producto.image}
+                                    alt={producto.title}
                                     borderRadius="md"
                                     objectFit="cover"
                                     w="100%"
@@ -52,10 +52,10 @@ const Home = () => {
                             </Link>
                         </Center>
                         <Box fontSize="md" color={colors.textSecondary} mb={3}>
-                            {producto.descripcion}
+                            {producto.description}
                         </Box>
                         <Box textAlign="center" fontSize="lg" mb={4} fontWeight="semibold" color={colors.success}>
-                            ${producto.precio.toFixed(2)}
+                            ${producto.price.toFixed(2)}
                         </Box>
                         <Flex gap={3} wrap="wrap" justify="center">
                             <Button bg={useColorModeValue("yellow.500", "yellow.500")} size="sm">
