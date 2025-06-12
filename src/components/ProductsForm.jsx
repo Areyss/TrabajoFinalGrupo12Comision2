@@ -31,8 +31,8 @@ const ProductsForm = () => {
     const categoriasCollection = useMemo(() =>
         createListCollection({
             items: categorias.map(cat => ({
-                label: cat.nombre,
-                value: String(cat.nombre)
+                label: cat,
+                value: String(cat)
             }))
         }),
         [categorias]
