@@ -7,14 +7,23 @@ const DeleteButton = () => {
     const { id } = useParams();
     const { productos, deleteProducto } = useProductos();
     const colors = useAppColors();
-    
+
     const producto = productos.find(p => p.id === parseInt(id));
 
     if (!producto) {
         return (
-            <Box textAlign="center" mt={10} bg={useColorModeValue("#3B4147", "gray.800")}>
+            <Box textAlign="center" mt={10} >
                 <Text fontSize="xl" color="red.400">Producto no encontrado.</Text>
-                <Button as={RouterLink} to="/" mt={4}>Volver</Button>
+                <Button
+                    as={RouterLink}
+                    to="/"
+                    mt={4}
+                    bg={useColorModeValue("#3B4147", "gray.800")}
+                    border="2px solid"
+                    borderColor="gray.100"
+                    color="gray.100"
+                    _hover={{ transform: "scale(1.05)" }}
+                >Volver</Button>
             </Box>
         );
     }
