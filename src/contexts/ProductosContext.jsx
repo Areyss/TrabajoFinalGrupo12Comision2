@@ -67,13 +67,41 @@ export const ProductosProvider = ({ children }) => {
 
   };
 
+  //Funcion para el eliminado logico del producto
+  const deleteProducto = (id) => {
+    setProductos((prevProductos) =>
+      prevProductos.map((prod) =>
+        prod.id === id ? { ...prod, disponible: false } : prod
+      )
+    );
+  };
+
+  //Funcion para buscar el id de un producto
+  const getProductoId = (id) => {
+    return productos.find((prod) => prod.id === parseInt(id));
+  };
+
+  //Funcion para restaurar producto
+  const restoreProducto = (id) => {
+    setProductos((prevProductos) =>
+      prevProductos.map((prod) =>
+        prod.id === id ? { ...prod, disponible: true } : prod
+      )
+    );
+  };
+
   const contextValue = useMemo(() => ({
     productos,
     setProductos,
     addProducto,
+    deleteProducto,
+    getProductoId,
+    restoreProducto,
     categorias,
     addCategoria
   }), [productos, categorias]);
+
+  
 
   return (
     <ProductosContext.Provider value={contextValue}>
