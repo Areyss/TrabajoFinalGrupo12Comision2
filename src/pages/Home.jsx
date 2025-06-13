@@ -34,7 +34,6 @@ const Home = () => {
                 <Button onClick={() => navigate(`productos-eliminados`)}>
                     <BiSolidTrashAlt size={30} />
                 </Button>
-
             </Flex>
             {/*Si no hay productos disponibles, mostrar mensaje */}
             {productosDisponibles.length === 0 ? (
@@ -80,7 +79,15 @@ const Home = () => {
                                 ${producto.price.toFixed(2)}
                             </Box>
                             <Flex gap={3} wrap="wrap" justify="center">
-                                <Button bg={useColorModeValue("yellow.500", "yellow.500")} size="sm">
+                                <Button
+                                    bg={useColorModeValue("#3B4147", "gray.800")}
+                                    border="2px solid"
+                                    borderColor="yellow.500"
+                                    color="yellow.500"
+                                    onClick={() => navigate(`/productos/${producto.id}`)}
+                                    boxShadow="md"
+                                    _hover={{ transform: "scale(1.05)" }}
+                                >
                                     Ver detalles
                                 </Button>
                                 <Button bg={useColorModeValue("blue.500", "blue.500")} size="sm">

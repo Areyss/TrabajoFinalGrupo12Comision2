@@ -26,7 +26,7 @@ const RestoreProducts = () => {
                 mx="auto"
                 mb={5}
             >
-                <Box flex="1" textAlign="center">
+                <Box flex="1" textAlign="center" >
                     <Text fontFamily="sans-serif" fontSize={30}>
                         Papelera
                     </Text>
@@ -40,7 +40,7 @@ const RestoreProducts = () => {
 
             {/*Si no hay productos disponibles, mostrar mensaje */}
             {productosEliminados.length === 0 ? (
-                <Box textAlign="center" mt={10}>
+                <Box textAlign="center" mt={10} >
                     <Text fontSize="xl" color="gray.400">
                         No hay productos eliminados.
                     </Text>
@@ -50,7 +50,7 @@ const RestoreProducts = () => {
                     {productosEliminados.map((producto) => (
                         <Box
                             key={producto.id}
-                            bg={"#2D3748"}
+                            bg={useColorModeValue("#3B4147", "gray.800")}
                             p={6}
                             borderRadius="xl"
                             boxShadow="lg"
