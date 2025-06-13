@@ -13,6 +13,7 @@ import { useProductos } from "../hooks/useProductos";
 import { useAppColors } from "../../theme/colors";
 import ProductRating from "../components/ProductRating";
 import { useColorModeValue } from "../components/ui/color-mode";
+
 const DetailProduct = () => {
     const { id } = useParams();
     const { productos } = useProductos();
