@@ -78,10 +78,10 @@ const RestoreProducts = () => {
                             </Text>
 
                             <Button
-                                bg="#2D3748"
+                                bg={useColorModeValue("#3B4147", "gray.800")}
                                 border="2px solid"
                                 borderColor="green.500"
-                                color="green.200"
+                                color="green.500"
                                 _hover={{ transform: "scale(1.05)" }}
                                 size="lg"
                                 onClick={() => restoreProducto(producto.id)}
