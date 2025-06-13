@@ -1,4 +1,4 @@
-import { useColorModeValue } from "../src/components/ui/color-mode";
+import { useColorModeValue } from "../components/ui/color-mode";
 
 export function useAppColors() {
   return {

@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import productsData from "../data/products.json";
-import categoriesData from "../data/categories.json"
+
 // Crea el contexto
 export const ProductosContext = createContext(null);
 
@@ -11,6 +10,8 @@ export const ProductosProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   const [categorias, setCategorias] = useState([]);
+
+  const [favoritos, setFavoritos] = useState([]);
 
   useEffect(() => {
     const fetchProductos = async () => {
@@ -36,8 +37,6 @@ export const ProductosProvider = ({ children }) => {
 
         setProductos(normalizedData);
         setCategorias(categoriesData);
-        console.log("Productos cargados:", normalizedData);
-        console.log("Categorías cargadas:", categoriesData);
       } catch (err) {
         console.error("Error al cargar los productos:", err);
         setError("Error al cargar los productos.Inténtalo de nuevo más tarde.");
@@ -90,6 +89,16 @@ export const ProductosProvider = ({ children }) => {
     );
   };
 
+const toggleFavorito = (idProducto) => {
+  setProductos(prev =>
+    prev.map(producto =>
+      producto.id === idProducto
+        ? { ...producto, favorito: !producto.favorito }
+        : producto
+    )
+  );
+};
+
   const contextValue = useMemo(() => ({
     productos,
     setProductos,
@@ -98,8 +107,10 @@ export const ProductosProvider = ({ children }) => {
     getProductoId,
     restoreProducto,
     categorias,
-    addCategoria
-  }), [productos, categorias]);
+    addCategoria,
+    favoritos,
+    toggleFavorito,
+  }), [productos, categorias, favoritos]);
 
   
 

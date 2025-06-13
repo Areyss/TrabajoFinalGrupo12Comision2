@@ -6,6 +6,7 @@ import CreateProduct from "../pages/CreateProduct";
 import DeleteButton from "../components/DeleteButton";
 import RestoreProducts from "../pages/RestoreProduct";
 import DetailProduct from "../pages/DatailProduct";
+import FavoriteProducts from "../pages/FavoriteProducts";
 
 export const router = createBrowserRouter([
     {
@@ -14,7 +15,7 @@ export const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
             { index: true, element: <Home /> },
-            //{ path: 'favoritos/', element: < /> },
+            { path: 'favoritos/', element: <FavoriteProducts /> },
             { path: 'productos/crear/', element: <CreateProduct /> },
             { path: 'productos/:id', element: < DetailProduct /> },
             { path: 'productos/eliminar/:id', element: < DeleteButton /> },

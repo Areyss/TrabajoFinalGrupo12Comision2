@@ -1,5 +1,5 @@
 import { Box,  Center,  Heading } from '@chakra-ui/react';
-import { useAppColors } from '../../theme/colors';
+import { useAppColors } from '../theme/colors';
 import { useState } from 'react';
 import ProductsForm from '../components/ProductsForm';
 const CreateProduct = () => {

@@ -9,7 +9,7 @@ import {
     Flex
 } from "@chakra-ui/react";
 import { BiArrowBack } from "react-icons/bi";
-import { useAppColors } from "../../theme/colors";
+import { useAppColors } from "../theme/colors";
 import { useProductos } from "../hooks/useProductos";
 import { useColorModeValue } from "../components/ui/color-mode";
 import { useNavigate, Link as RouterLink } from "react-router-dom";

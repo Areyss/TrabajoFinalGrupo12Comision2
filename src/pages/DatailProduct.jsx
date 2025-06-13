@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { Link, useParams } from "react-router-dom";
 import { useProductos } from "../hooks/useProductos";
-import { useAppColors } from "../../theme/colors";
+import { useAppColors } from "../theme/colors";
 import ProductRating from "../components/ProductRating";
 import { useColorModeValue } from "../components/ui/color-mode";
 
