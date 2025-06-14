@@ -20,7 +20,7 @@ const Home = () => {
     const colors = useAppColors();
     const navigate = useNavigate();
     const { productos, toggleFavorito } = useProductos();
-    const productosDisponibles = productos.filter(p => p.disponible);
+    const productosFavoritos = productos.filter(p => p.favorito && p.disponible);
     return (
         <Box py={10} px={5}>
             <Flex
@@ -39,15 +39,15 @@ const Home = () => {
                 </Button>
             </Flex>
             {/*Si no hay productos disponibles, mostrar mensaje */}
-            {productosDisponibles.length === 0 ? (
+            {productosFavoritos.length === 0 ? (
                 <Box textAlign="center" mt={10}>
                     <Text fontSize="xl" color="gray.400">
-                        No hay productos disponibles.
+                        No hay productos favoritos.
                     </Text>
                 </Box>
             ) : (
                 <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} gap={10}>
-                    {productosDisponibles.map((producto) => (
+                    {productosFavoritos.map((producto) => (
                         <Box
                             key={producto.id}
                             bg={useColorModeValue("#3B4147", "gray.800")}
@@ -109,8 +109,7 @@ const Home = () => {
                                 >
                                     Ver detalles
                                 </Button>
-                                <Button bg={useColorModeValue("blue.500", "blue.500")} size="sm"
-                                        onClick={() => navigate(`/productos/editar/${producto.id}`)}>
+                                <Button bg={useColorModeValue("blue.500", "blue.500")} size="sm">
                                     Editar
                                 </Button>
                                 <Button

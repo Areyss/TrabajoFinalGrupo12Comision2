@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom"
 import { Box, Flex, Container, Text, Center } from "@chakra-ui/react"
 import Navbar from "./components/NavBar"
 import { ColorModeButton } from "./components/ui/color-mode"
-import { useAppColors } from "../theme/colors"
+import { useAppColors } from "../src/theme/colors"
 
 const App = () => {
   const colors = useAppColors();

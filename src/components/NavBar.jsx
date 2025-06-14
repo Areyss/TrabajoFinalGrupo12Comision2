@@ -1,6 +1,6 @@
 import { HStack, Link, Box, Flex } from "@chakra-ui/react";
 import { NavLink as RouterLink } from "react-router-dom";
-import { useAppColors } from "../../theme/colors";
+import { useAppColors } from "../theme/colors";
 const NavBar = () => {
   const colors = useAppColors();
   return (

@@ -1,7 +1,7 @@
 import { Box, Text, Button, Flex, Center, Image } from "@chakra-ui/react";
 import { Link as RouterLink, useParams } from "react-router-dom";
 import { useProductos } from "../hooks/useProductos";
-import { useAppColors } from "../../theme/colors";
+import { useAppColors } from "../theme/colors";
 import { useColorModeValue } from "../components/ui/color-mode";
 const DeleteButton = () => {
     const { id } = useParams();
