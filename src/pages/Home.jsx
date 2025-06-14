@@ -50,7 +50,7 @@ const Home = () => {
                     {productosDisponibles.map((producto) => (
                         <Box
                             key={producto.id}
-                            bg={colors.secondary}
+                            bg={useColorModeValue("#3B4147", "gray.800")}
                             p={6}
                             borderRadius="xl"
                             boxShadow="lg"
@@ -109,7 +109,8 @@ const Home = () => {
                                 >
                                     Ver detalles
                                 </Button>
-                                <Button bg={useColorModeValue("blue.500", "blue.500")} size="sm">
+                                <Button bg={useColorModeValue("blue.500", "blue.500")} size="sm"
+                                        onClick={() => navigate(`/productos/editar/${producto.id}`)}>
                                     Editar
                                 </Button>
                                 <Button

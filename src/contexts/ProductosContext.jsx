@@ -89,15 +89,22 @@ export const ProductosProvider = ({ children }) => {
     );
   };
 
-const toggleFavorito = (idProducto) => {
-  setProductos(prev =>
-    prev.map(producto =>
-      producto.id === idProducto
-        ? { ...producto, favorito: !producto.favorito }
-        : producto
-    )
-  );
-};
+  const updateProducto = (productoActualizado) => {
+    setProductos(prev =>
+      prev.map(p =>
+        p.id === productoActualizado.id ? productoActualizado : p
+      )
+    );
+  };
+  const toggleFavorito = (idProducto) => {
+    setProductos(prev =>
+      prev.map(producto =>
+        producto.id === idProducto
+          ? { ...producto, favorito: !producto.favorito }
+          : producto
+      )
+    );
+  };
 
   const contextValue = useMemo(() => ({
     productos,
@@ -106,6 +113,7 @@ const toggleFavorito = (idProducto) => {
     deleteProducto,
     getProductoId,
     restoreProducto,
+    updateProducto,
     categorias,
     addCategoria,
     favoritos,
