@@ -8,6 +8,7 @@ import RestoreProducts from "../pages/RestoreProduct";
 import DetailProduct from "../pages/DatailProduct";
 import FavoriteProducts from "../pages/FavoriteProducts";
 import EditProduct from "../pages/EditProduct";
+import LoginPage from "../pages/LoginPage";
 
 export const router = createBrowserRouter([
     {
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
             { index: true, element: <Home /> },
+            { path: '/login', element: < LoginPage /> },
             { path: 'favoritos/', element: <FavoriteProducts /> },
             { path: 'productos/crear/', element: <CreateProduct /> },
             { path: 'productos/:id', element: < DetailProduct /> },
