@@ -3,6 +3,7 @@ import { Box, Flex, Container, Text, Center } from "@chakra-ui/react"
 import Navbar from "./components/NavBar"
 import { ColorModeButton } from "./components/ui/color-mode"
 import { useAppColors } from "../src/theme/colors"
+import UserMenuButton from "./components/UserMenuButton"
 
 const App = () => {
   const colors = useAppColors();
@@ -13,21 +14,24 @@ const App = () => {
 
   return (
     <Flex direction="column" minHeight="100vh">
-      {showNav && (
-        <Box as="header" bg={colors.primary} color="white" py={4} boxShadow="md">
-          <Container>
-            <Flex justifyContent='space-between'>
-              <Center>
-                <Text>LOGO</Text>
-              </Center>
-              <Flex align='center'>
-                <Navbar />
-                <ColorModeButton />
-              </Flex>
+
+      <Box as="header" bg={colors.primary} color="white" boxShadow="md">
+        <Container >
+          <Flex justifyContent='space-between' py={2}>
+            <Center>
+              <Text>LOGO</Text>
+            </Center>
+            <Flex align='center'>
+              <UserMenuButton />
+              <ColorModeButton />
             </Flex>
-          </Container>
-        </Box>
-      )}
+          </Flex>
+          {showNav && (
+            <Navbar />
+          )}
+        </Container>
+      </Box>
+      
 
       <Box as="main" flex={1} py={5} bgColor={colors.bg}>
         <Container maxW="container.xl">

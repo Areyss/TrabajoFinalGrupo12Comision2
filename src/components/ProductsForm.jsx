@@ -108,63 +108,63 @@ const ProductsForm = ({ productoEditar = null}) => {
                         <Field.Label>
                             Descripción: <Field.RequiredIndicator />
                         </Field.Label>
-                        <Textarea placeholder='Descripción del Producto' minH={10} h="auto" value={description} onChange={e => setDescription(e.target.value)} />
+                        <Textarea placeholder='Descripción del Producto' minH={10} autoresize value={description} onChange={e => setDescription(e.target.value)} />
                         <Field.ErrorText>La descripción es obligatoria.</Field.ErrorText>
                     </Field.Root>
+                    <Box display="flex" gap={4}>
+                        <Field.Root required invalid={submitted && !esPrecioValido(price)}>
+                            <Field.Label>
+                                Precio: <Field.RequiredIndicator />
+                            </Field.Label>
+                            <InputGroup startElement="$">
+                                <Input placeholder='0,00' type='number' step={0.01} min={0} value={price} onChange={e => setPrice(e.target.value)} />
+                            </InputGroup>
+                            <Field.ErrorText>El precio es obligatorio y debe ser mayor a 0.</Field.ErrorText>
+                        </Field.Root>
 
-                    <Field.Root required invalid={submitted && !esPrecioValido(price)}>
-                        <Field.Label>
-                            Precio: <Field.RequiredIndicator />
-                        </Field.Label>
-                        <InputGroup startElement="$">
-                            <Input placeholder='0,00' type='number' step={0.01} min={0} value={price} onChange={e => setPrice(e.target.value)} />
-                        </InputGroup>
-                        <Field.ErrorText>El precio es obligatorio y debe ser mayor a 0.</Field.ErrorText>
-                    </Field.Root>
+                        <Field.Root required invalid={submitted && !category[0]}>
+                            <Field.Label>
+                                Categoría: <Field.RequiredIndicator />
+                            </Field.Label>
+                            <Box display="flex" alignItems="center" gap={2} w="100%">
+                                <Select.Root
+                                    collection={categoriasCollection}
+                                    value={category}
+                                    onValueChange={(e) => setCategory(e.value)}
+                                >
+                                    <Select.HiddenSelect />
 
-                    <Field.Root required invalid={submitted && !category[0]}>
-                        <Field.Label>
-                            Categoría: <Field.RequiredIndicator />
-                        </Field.Label>
-                        <Box display="flex" alignItems="center" gap={2} w="100%">
-                            <Select.Root
-                                collection={categoriasCollection}
-                                value={category}
-                                onValueChange={(e) => setCategory(e.value)}
-                            >
-                                <Select.HiddenSelect />
+                                    <Select.Control>
+                                        <Select.Trigger>
+                                            <Select.ValueText placeholder="Selecciona una categoría" />
+                                        </Select.Trigger>
+                                        <Select.IndicatorGroup>
+                                            <Select.ClearTrigger />
+                                            <Select.Indicator />
+                                        </Select.IndicatorGroup>
+                                    </Select.Control>
+                                    <Portal>
+                                        <Select.Positioner>
+                                            <Select.Content>
+                                                {categoriasCollection.items.map((cat) => (
+                                                    <Select.Item item={cat} key={cat.value}>
+                                                        {cat.label}
+                                                        <Select.ItemIndicator />
+                                                    </Select.Item>
+                                                ))}
+                                            </Select.Content>
+                                        </Select.Positioner>
+                                    </Portal>
+                                </Select.Root>
 
-                                <Select.Control>
-                                    <Select.Trigger>
-                                        <Select.ValueText placeholder="Selecciona una categoría" />
-                                    </Select.Trigger>
-                                    <Select.IndicatorGroup>
-                                        <Select.ClearTrigger />
-                                        <Select.Indicator />
-                                    </Select.IndicatorGroup>
-                                </Select.Control>
-                                <Portal>
-                                    <Select.Positioner>
-                                        <Select.Content>
-                                            {categoriasCollection.items.map((cat) => (
-                                                <Select.Item item={cat} key={cat.value}>
-                                                    {cat.label}
-                                                    <Select.ItemIndicator />
-                                                </Select.Item>
-                                            ))}
-                                        </Select.Content>
-                                    </Select.Positioner>
-                                </Portal>
-                            </Select.Root>
-
-                            <AgregarCategoriaPopover onAdd={nombre => {
-                                addCategoria(nombre);
-                                setCategory([nombre]);
-                            }} />
-                        </Box>
-                        <Field.ErrorText>La categoría es obligatoria.</Field.ErrorText>
-                    </Field.Root>
-
+                                <AgregarCategoriaPopover onAdd={nombre => {
+                                    addCategoria(nombre);
+                                    setCategory([nombre]);
+                                }} />
+                            </Box>
+                            <Field.ErrorText>La categoría es obligatoria.</Field.ErrorText>
+                        </Field.Root>
+                    </Box>
                     <Field.Root required invalid={submitted && !esUrlImagenValida(image)}>
                         <Field.Label>
                             Imagen: <Field.RequiredIndicator />

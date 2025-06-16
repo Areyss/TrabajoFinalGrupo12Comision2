@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-
 // Crea el contexto
 export const ProductosContext = createContext(null);
 
@@ -118,7 +117,8 @@ export const ProductosProvider = ({ children }) => {
     addCategoria,
     favoritos,
     toggleFavorito,
-  }), [productos, categorias, favoritos]);
+    isLoading,
+  }), [productos, categorias, favoritos, isLoading]);
 
   
 
