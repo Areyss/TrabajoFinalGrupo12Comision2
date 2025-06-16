@@ -9,6 +9,7 @@ import DetailProduct from "../pages/DatailProduct";
 import FavoriteProducts from "../pages/FavoriteProducts";
 import EditProduct from "../pages/EditProduct";
 import LoginPage from "../pages/LoginPage";
+import RouteProtector from "../components/RouteProtector";
 
 export const router = createBrowserRouter([
     {
@@ -18,12 +19,46 @@ export const router = createBrowserRouter([
         children: [
             { index: true, element: <Home /> },
             { path: '/login', element: < LoginPage /> },
-            { path: 'favoritos/', element: <FavoriteProducts /> },
-            { path: 'productos/crear/', element: <CreateProduct /> },
-            { path: 'productos/:id', element: < DetailProduct /> },
-            { path: 'productos/eliminar/:id', element: < DeleteButton /> },
-            { path: 'productos-eliminados', element: < RestoreProducts /> },
-            { path: 'productos/editar/:id', element: <EditProduct /> },
+            {
+                path: 'favoritos/', element: (
+                    <RouteProtector rolesPermitidos={['usuario', 'administrador']}>
+                        <FavoriteProducts />
+                    </RouteProtector>
+                )
+            },
+            {
+                path: 'productos/crear/', element: (
+                    < RouteProtector rolesPermitidos={['administrador']} >
+                        <CreateProduct />
+                    </RouteProtector >
+                )
+            },
+            {
+                path: 'productos/:id', element: (
+                        <DetailProduct />
+                )
+            },
+            {
+                path: 'productos/eliminar/:id', element: (
+                    <RouteProtector rolesPermitidos={['administrador']}>
+                        <DeleteButton />
+                    </RouteProtector>
+                )
+            },
+            {
+                path: 'productos-eliminados', element: (
+                    <RouteProtector rolesPermitidos={['administrador']}>
+                        <RestoreProducts />
+                    </RouteProtector>
+                )
+            },
+            {
+                path: 'productos/editar/:id', element: (
+                    <RouteProtector rolesPermitidos={['administrador']}>
+                        <EditProduct />
+                    </RouteProtector>
+                )
+            },
             //{ path: 'about', element: < /> },
             { path: '*', element: <ErrorPage /> }
         ]
