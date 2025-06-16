@@ -1,5 +1,6 @@
 import { Popover, Portal, Button, Field, Input, Stack } from "@chakra-ui/react";
 import { useState } from "react";
+import { LuPlus } from "react-icons/lu";
 
 const AgregarCategoriaPopover = ({ onAdd }) => {
   const [nuevaCategoria, setNuevaCategoria] = useState("");
@@ -26,7 +27,7 @@ const AgregarCategoriaPopover = ({ onAdd }) => {
                     variant="outline"
                     aria-label={open ? "Cerrar" : "Agregar categoría"}
                 >
-                    ➕
+                    <LuPlus />
                 </Button>
             </Popover.Trigger>
             <Portal>

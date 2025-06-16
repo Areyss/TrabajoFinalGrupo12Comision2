@@ -1,7 +1,6 @@
 import { Box, Image, Center, Flex, Button, IconButton, Text ,Stack} from "@chakra-ui/react";
 import { LuHeart } from "react-icons/lu";
 import { Link as RouterLink } from "react-router-dom";
-import ProductRating from "./ProductRating";
 
 const CardProduct = ({
   producto,
@@ -70,17 +69,7 @@ const CardProduct = ({
                 
                 
                 <Flex gap={3} wrap="wrap" justify="center" mb="4">
-                    {/* <Button
-                    bg={colors.bgCard}
-                    border="2px solid"
-                    borderColor="yellow.500"
-                    color="yellow.500"
-                    onClick={onVerDetalles}
-                    boxShadow="md"
-                    _hover={{ transform: "scale(1.05)" }}
-                >
-                    Ver detalles
-                </Button> */}
+
                     {user?.rol === "administrador" && (
                         <>
                             <Button

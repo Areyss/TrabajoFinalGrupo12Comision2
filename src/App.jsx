@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from "react-router-dom"
+import { Outlet, useLocation, useNavigate } from "react-router-dom"
 import { Box, Flex, Container, Text, Center } from "@chakra-ui/react"
 import Navbar from "./components/NavBar"
 import { ColorModeButton } from "./components/ui/color-mode"
@@ -8,6 +8,7 @@ import UserMenuButton from "./components/UserMenuButton"
 const App = () => {
   const colors = useAppColors();
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Ocultar Navbar en la page del login
   const showNav = location.pathname !== "/login";
@@ -18,7 +19,7 @@ const App = () => {
       <Box as="header" bg={colors.primary} color="white" boxShadow="md">
         <Container >
           <Flex justifyContent='space-between' py={2}>
-            <Center>
+            <Center onClick={() => navigate('/')} cursor="pointer">
               <Text>LOGO</Text>
             </Center>
             <Flex align='center'>
