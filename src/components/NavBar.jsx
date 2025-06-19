@@ -2,6 +2,7 @@ import { HStack, Link, Box, Flex, Button, Center, Menu, Portal } from "@chakra-u
 import { useLocation, NavLink as RouterLink, useNavigate} from "react-router-dom";
 import { useAppColors } from "../theme/colors";
 import { useAuth } from "../hooks/useAuth";
+import UserMenuButton from "./UserMenuButton";
 
 const NavBar = () => {
   const colors = useAppColors();
@@ -58,7 +59,7 @@ const NavBar = () => {
           >
             Favoritos
           </Link>
-        {/*
+        
           <Link
             as={RouterLink}
             to="/productos"
@@ -77,7 +78,7 @@ const NavBar = () => {
           >
             Productos
           </Link>
-        */}
+       
           {user?.rol === "administrador" && (
             <Link
               as={RouterLink}
@@ -116,6 +117,7 @@ const NavBar = () => {
           >
             Acerca de
           </Link>
+          <UserMenuButton />
         </HStack>
       </Flex>
     </Box>

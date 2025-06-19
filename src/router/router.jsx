@@ -10,6 +10,7 @@ import FavoriteProducts from "../pages/FavoriteProducts";
 import EditProduct from "../pages/EditProduct";
 import LoginPage from "../pages/LoginPage";
 import RouteProtector from "../components/RouteProtector";
+import Products from "../pages/Products";
 
 export const router = createBrowserRouter([
     {
@@ -19,6 +20,7 @@ export const router = createBrowserRouter([
         children: [
             { index: true, element: <Home /> },
             { path: '/login', element: < LoginPage /> },
+            { path: '/productos', element: <Products />},
             {
                 path: 'favoritos/', element: (
                     <RouteProtector rolesPermitidos={['usuario', 'administrador']}>
