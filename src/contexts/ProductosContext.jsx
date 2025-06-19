@@ -5,6 +5,7 @@ export const ProductosContext = createContext(null);
 // Proveedor del contexto
 export const ProductosProvider = ({ children }) => {
   const [productos, setProductos] = useState([]);
+  const [searchResults, setSearchResults] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -108,6 +109,8 @@ export const ProductosProvider = ({ children }) => {
   const contextValue = useMemo(() => ({
     productos,
     setProductos,
+    searchResults,
+    setSearchResults,
     addProducto,
     deleteProducto,
     getProductoId,
@@ -118,7 +121,7 @@ export const ProductosProvider = ({ children }) => {
     favoritos,
     toggleFavorito,
     isLoading,
-  }), [productos, categorias, favoritos, isLoading]);
+  }), [productos, searchResults, categorias, favoritos, isLoading]);
 
   
 

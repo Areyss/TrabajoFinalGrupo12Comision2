@@ -28,7 +28,7 @@ const CardProduct = ({
             position="relative"
             overflow={"hidden"}
         >
-            <Center mb={4} padding="8" border="1px solid" borderColor={colors.secondary} bg="white"  overflow="hidden">
+            <Center mb={4} padding="5" border="1px solid" borderColor={colors.secondary} bg="white"  overflow="hidden">
                 <Image
                     src={producto.image}
                     alt={producto.title}
