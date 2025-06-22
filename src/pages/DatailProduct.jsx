@@ -102,7 +102,7 @@ const DetailProduct = () => {
                     <Button
                         as={Link}
                         to="/"
-                        bg={useColorModeValue("#3B4147", "gray.800")}
+                        bg={colors.bgCard}
                         border="2px solid"
                         borderColor="blue.500"
                         color="blue.500"

@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "nombre": "Lucia Portal",
+        "comentario": "Rápido, confiable y económico. ¡Recomiendo totalmente!",
+        "avatar": "https://i.pravatar.cc/150?img=32"
+    },
+    {
+        "id": 2,
+        "nombre": "Valentin Ruiz",
+        "comentario": "Muy buena atención y entrega puntual.",
+        "avatar": "https://i.pravatar.cc/150?img=12"
+    },
+    {
+        "id": 3,
+        "nombre": "Martína López",
+        "comentario": "La app es intuitiva y los productos son de calidad.",
+        "avatar": "https://i.pravatar.cc/150?img=45"
+    },
+    {
+        "id": 4,
+        "nombre": "Camila Torres",
+        "comentario": "Encontré justo lo que buscaba, excelente experiencia.",
+        "avatar": "https://i.pravatar.cc/150?img=23"
+    },
+    {
+        "id": 5,
+        "nombre": "Julieta Rivas",
+        "comentario": "Fácil de usar y con buenos precios.",
+        "avatar": "https://i.pravatar.cc/150?img=5"
+    }
+]

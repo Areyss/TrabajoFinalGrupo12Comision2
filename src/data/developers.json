@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "nombreCompleto": "Ariel Reyes",
+    "contacto": " ",
+    "rol": " ",
+    "descripcion": " ",
+    "foto": "https://avatars.githubusercontent.com/u/112135522?v=4"
+  },
+  {
+    "id": 4604,
+    "nombreCompleto": "Joel Garcia",
+    "contacto": "https://github.com/JoelGarcia21",
+    "rol": "Desarrollador",
+    "descripcion": "Encargado del login, el listado de productos, la administración de roles y la eliminación de productos.",
+    "foto": "https://avatars.githubusercontent.com/u/131055621?v=4"
+  }
+]

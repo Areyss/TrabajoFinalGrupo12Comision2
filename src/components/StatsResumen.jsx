@@ -21,10 +21,7 @@ const StatsResumen = () => {
             </Stat.ValueText>
             <Stat.HelpText>actualizado hoy</Stat.HelpText>
           </Stat.Root>
-
         </GridItem>
-
-
         <Stat.Root>
           <Stat.Label>Clientes</Stat.Label>
           <HStack>
