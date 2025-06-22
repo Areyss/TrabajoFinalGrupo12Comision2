@@ -52,7 +52,12 @@ export const ProductosProvider = ({ children }) => {
   const addProducto = (nuevoProducto) => {
     // Generar un id único 
     const id = productos.length > 0 ? productos[productos.length - 1].id + 1 : 1;
-    setProductos([...productos, { ...nuevoProducto, id, disponible: true }]);
+    //Generacion random
+    const randomRating = {
+      rate: Number((Math.random() * 4 + 1).toFixed(1)), // 1.0 a 5.0
+      count: Math.floor(Math.random() * 1000) + 1 // 1 a 1000
+    };
+    setProductos([...productos, { ...nuevoProducto, id, disponible: true, rating: randomRating }]);
     // console.log("Producto agregado:", nuevoProducto);
   };
   // Función para agregar una categoría

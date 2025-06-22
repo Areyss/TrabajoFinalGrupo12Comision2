@@ -6,7 +6,7 @@ export function useAppColors() {
     primary: useColorModeValue('#009688', '#B71C1C'),
 
     // Hover para el color principal
-    primaryHover: useColorModeValue('#81a160', '#52043d'), 
+    primaryHover: useColorModeValue('#00796B', '#8B1A1A'), 
 
     // Fondo de tarjetas, contenedores secundarios, etc.
     secondary: useColorModeValue('#E9ECEF', '#1A1A1A'),

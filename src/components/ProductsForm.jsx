@@ -5,16 +5,14 @@ import { useState, useMemo } from 'react';
 import { useProductos } from '../hooks/useProductos';
 import { useNavigate } from 'react-router-dom';
 import AgregarCategoriaPopover from "./AgregarCategoriaPopover";
+import { useAppColors } from '../theme/colors';
 
 const ProductsForm = ({ productoEditar = null}) => {
     // Importa el hook useProductos para acceder a las funciones y estados del contexto
     const { addProducto, categorias, addCategoria, updateProducto } = useProductos();
     const navigate = useNavigate();
+    const colors = useAppColors();
 
-    // Estados para manejar la imagen (opcional)
-    // const [imageType, setImageType] = useState('link');
-    // const [imageLink, setImageLink] = useState('');
-    // const [imageFile, setImageFile] = useState(null);
 
     // Si hay productoEditar, inicializa los estados con sus valores
     const [title, setTitle] = useState(productoEditar?.title || "");
@@ -25,7 +23,8 @@ const ProductsForm = ({ productoEditar = null}) => {
 
     // Estado para manejar errores del formulario
     const [formError, setFormError] = useState('');
-    const [submitted, setSubmitted] = useState(false);
+    const [submitted, setSubmitted] = useState(false); //Para mostrar los errores de validacion
+    const [isSubmitting, setIsSubmitting] = useState(false); //Para el spinner de carga
 
     // Adaptar categorías al formato que espera createListCollection
     const categoriasCollection = useMemo(() =>
@@ -56,6 +55,7 @@ const ProductsForm = ({ productoEditar = null}) => {
             return;
         }
         setFormError("");
+        setIsSubmitting(true);
         const producto = {
             ...productoEditar, // Mantiene id y otros campos si es edición
             title,
@@ -70,23 +70,17 @@ const ProductsForm = ({ productoEditar = null}) => {
             // Si es alta, agrega el producto
             addProducto(producto);
         }
-        // Limpia los campos solo si es alta
-        if (!productoEditar) {
-            setTitle('');
-            setDescription('');
-            setPrice('');
-            setCategory([]);
-            setImage('');
-        }
 
-        if (productoEditar) {
-            // Si es edición, redirige al detalle del producto editado
-            navigate(`/productos/${producto.id}`);
-        } else {
-            // Si es alta, redirige a la lista de productos
-             navigate('/'); // Redirige a la página principal
-        }
-       
+        setTimeout(() => {
+            setIsSubmitting(false);
+            if (productoEditar) {
+                // Si es edición, redirige al detalle del producto editado
+                navigate(`/productos/${producto.id}`);
+            } else {
+                // Si es alta, redirige a la lista de productos
+                navigate('/'); // Redirige a la página principal
+            }
+        }, 600); // Pequeño delay para UX
     };
 
     return (
@@ -172,36 +166,16 @@ const ProductsForm = ({ productoEditar = null}) => {
                         <Input placeholder='https://...' value={image} onChange={e => setImage(e.target.value)} />
                         <Field.HelperText>Ingrese el url de la imagen.</Field.HelperText>
                         <Field.ErrorText>La imagen debe ser una URL válida que termine en .jpg, .jpeg, .png, .webp o .gif</Field.ErrorText>
+                        {esUrlImagenValida(image) && (
+                            <Box mt={3} display="flex" justifyContent="center">
+                                <img
+                                    src={image}
+                                    alt="Vista previa"
+                                    style={{ maxWidth: "150px", maxHeight: "150px", borderRadius: "8px", border: "1px solid #eee" }}
+                                />
+                            </Box>
+                        )}
                     </Field.Root>
-                    {/* Prueba de imagen */}
-                    {/* <Field.Root>
-                    <Field.Label>
-                        Imagen:
-                        <Field.RequiredIndicator />
-                    </Field.Label>
-                    <Tabs.Root defaultValue="link" onChange={idx => setImageType(idx === 0 ? 'link' : 'file')}>
-                        <Tabs.List>
-                            <Tabs.Trigger value="link">Link</Tabs.Trigger>
-                            <Tabs.Trigger value="file"> Subir archivo</Tabs.Trigger>
-                        </Tabs.List>
-
-                        <Tabs.Content value="link">
-                            <Input
-                                placeholder='URL de la imagen'
-                                value={imageLink}
-                                onChange={e => setImageLink(e.target.value)}
-                            />
-                        </Tabs.Content>
-                        <Tabs.Content value="file">
-                            <Input
-                                type="file"
-                                accept="image/*"
-                                onChange={e => setImageFile(e.target.files[0])}
-                            />
-                        </Tabs.Content>
-
-                    </Tabs.Root>
-                </Field.Root> */}
                 </Fieldset.Content>
                 {formError && (
                     <Fieldset.ErrorText>
@@ -210,7 +184,7 @@ const ProductsForm = ({ productoEditar = null}) => {
                 )}
             </Fieldset.Root>
             <Box display="flex" gap={4} mt={5}>
-                <Button as="button" type="submit" colorScheme={productoEditar ? "yellow" : "green"}>
+                <Button as="button" type="submit" bg={ colors.primary } _hover={{bg: colors.primaryHover}} loading={isSubmitting} loadingText={productoEditar ? "Actualizando..." : "Creando..."}>
                     {productoEditar ? "Actualizar Producto" : "Crear Producto"}
                 </Button>
                 <Button

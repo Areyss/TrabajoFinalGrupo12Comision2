@@ -1,5 +1,6 @@
-import { Box, Flex, Image, Text, Button, IconButton } from "@chakra-ui/react";
-import { LuHeart } from "react-icons/lu";
+import { Box, Flex, Image, Text, Button, Stack } from "@chakra-ui/react";
+import FavoriteButton from "./FavoriteButton";
+import ProductRating from "../components/ProductRating";
 
 const CardProductList = ({
   producto,
@@ -12,7 +13,7 @@ const CardProductList = ({
 }) => (
   <Flex
     key={producto.id}
-    bg={colors.secondary}
+    bg={colors.bgPrimary}
     borderRadius="xl"
     boxShadow="lg"
     h="250px"
@@ -39,9 +40,18 @@ const CardProductList = ({
       <Text fontSize="xl" fontWeight="bold" lineClamp={1} color={colors.text}>{producto.title}</Text>
       <Text fontSize="md" color={colors.textSecondary} mb={2}>{producto.category}</Text>
       <Text fontSize="md" color={colors.textColor} mb={2} lineClamp={2}>{producto.description}</Text>
-      <Text fontSize="2xl" fontWeight="semibold" color={colors.success} mb={2}>
+      <Stack direction={"row"} justify={"space-between"}>
+        <Text fontSize="2xl" fontWeight="semibold" color={colors.success} mb={2}>
         ${producto.price.toFixed(2)}
-      </Text>
+      </Text>     
+      <Stack align="center" direction="row" justify="flex-start" gap={4} pr="5">
+        <Text fontSize="md" color="gray.400">
+          ({producto.rating?.rate})
+        </Text>
+        <ProductRating rate={producto?.rating?.rate} />
+      </Stack>
+      </Stack>
+      
       <Flex gap={2} mt={2}>
         <Button size="sm"  onClick={onVerDetalles}>Ver detalles</Button>
         {user?.rol === "administrador" && (
@@ -52,24 +62,10 @@ const CardProductList = ({
         )}
       </Flex>
     </Box>
-    <IconButton
-      aria-label="Favorite"
-      rounded="full"
-      position="absolute"
-      top={2}
-      right={2}
-      color={colors.gray}
-      opacity={0.9}
-      variant="ghost"
-      size="lg"
-      onClick={e => {
-        e.stopPropagation();
-        e.preventDefault();
-        onToggleFavorito();
-      }}
-    >
-      {producto.favorito ? <Box fontSize="lg" position="absolute" top={2}>❤️</Box> : <LuHeart />}
-    </IconButton>
+    <FavoriteButton
+                isFavorite={producto.favorito}
+                onToggle={onToggleFavorito}
+            />
   </Flex>
 );
 

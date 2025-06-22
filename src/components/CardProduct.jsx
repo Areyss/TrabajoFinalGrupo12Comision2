@@ -1,6 +1,6 @@
-import { Box, Image, Center, Flex, Button, IconButton, Text ,Stack} from "@chakra-ui/react";
-import { LuHeart } from "react-icons/lu";
+import { Box, Image, Center, Flex, Button, Text } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
+import FavoriteButton from "./FavoriteButton";
 
 const CardProduct = ({
   producto,
@@ -16,7 +16,7 @@ const CardProduct = ({
             as = {RouterLink}
             to={`/productos/${producto.id}`}
             key={producto.id}
-            bg={colors.secondary}
+            bg={colors.bgPrimary}
             
             borderRadius="xl"
             boxShadow="lg"
@@ -39,24 +39,10 @@ const CardProduct = ({
                 />
             </Center>
 
-            <IconButton
-                aria-label="Favorite"
-                rounded="full"
-                position="absolute"
-                top={1}
-                right={1}
-                color={colors.gray}
-                opacity={0.9}
-                variant="ghost"
-                size="xl"
-                onClick={e => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    onToggleFavorito();
-                }}
-            >
-                {producto.favorito ? <Box fontSize="lg" position="absolute" top={2}>❤️</Box> : <LuHeart />}
-            </IconButton>
+            <FavoriteButton 
+                isFavorite={producto.favorito}
+                onToggle={onToggleFavorito}
+            />
 
             <Flex justify="space-between" flexDirection={"column"} px={6} py={1} gap={1}>
                 <Text fontSize="xl" fontWeight="medium" color={colors.text} lineClamp={2} lineHeight={1.2} minH={50}>
