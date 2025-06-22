@@ -1,5 +1,5 @@
-import { Box, Flex, Image, Text, Button, IconButton } from "@chakra-ui/react";
-import { LuHeart } from "react-icons/lu";
+import { Box, Flex, Image, Text, Button } from "@chakra-ui/react";
+import FavoriteButton from "./FavoriteButton";
 
 const CardProductList = ({
   producto,
@@ -52,24 +52,10 @@ const CardProductList = ({
         )}
       </Flex>
     </Box>
-    <IconButton
-      aria-label="Favorite"
-      rounded="full"
-      position="absolute"
-      top={2}
-      right={2}
-      color={colors.gray}
-      opacity={0.9}
-      variant="ghost"
-      size="lg"
-      onClick={e => {
-        e.stopPropagation();
-        e.preventDefault();
-        onToggleFavorito();
-      }}
-    >
-      {producto.favorito ? <Box fontSize="lg" position="absolute" top={2}>❤️</Box> : <LuHeart />}
-    </IconButton>
+    <FavoriteButton
+                isFavorite={producto.favorito}
+                onToggle={onToggleFavorito}
+            />
   </Flex>
 );
 

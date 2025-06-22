@@ -13,10 +13,11 @@ import { useProductos } from "../hooks/useProductos";
 import { useAppColors } from "../theme/colors";
 import ProductRating from "../components/ProductRating";
 import { useColorModeValue } from "../components/ui/color-mode";
+import FavoriteButton from "../components/FavoriteButton";
 
 const DetailProduct = () => {
     const { id } = useParams();
-    const { productos } = useProductos();
+    const { productos, toggleFavorito } = useProductos();
     const colors = useAppColors();
     const producto = productos.find((p) => p.id === parseInt(id));
 
@@ -65,7 +66,11 @@ const DetailProduct = () => {
                     </Box>
 
 
-                    <Stack gap="1" textAlign="center" flex="1" border="1px solid" borderColor="gray.300" p={6} borderRadius="lg" height="100%" minH={"500px"}>
+                    <Stack gap="1" textAlign="center" flex="1" border="1px solid" borderColor="gray.300" p={6} borderRadius="lg" height="100%" minH={"500px"} position={"relative"}>
+                        <FavoriteButton
+                            isFavorite={producto.favorito}
+                            onToggle={() => toggleFavorito(producto.id)}
+                        />
                         <Text textAlign="start" fontSize="md" color="gray.400">
                             Categoría: {producto.category}
                         </Text>
