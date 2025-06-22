@@ -12,7 +12,7 @@ const CardProductList = ({
 }) => (
   <Flex
     key={producto.id}
-    bg={colors.secondary}
+    bg={colors.bgPrimary}
     borderRadius="xl"
     boxShadow="lg"
     h="250px"

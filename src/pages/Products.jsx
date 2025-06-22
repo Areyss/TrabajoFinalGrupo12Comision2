@@ -28,7 +28,7 @@ const Products = () => {
           </Text>
         </Box>
       ) : (
-        <SimpleGrid columns={1} gap={10}>
+        <SimpleGrid columns={1} gap={5}>
           {productosAMostrar.map((producto) => (
             <CardProductList
               key={producto.id}

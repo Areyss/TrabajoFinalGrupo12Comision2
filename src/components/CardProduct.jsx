@@ -16,7 +16,7 @@ const CardProduct = ({
             as = {RouterLink}
             to={`/productos/${producto.id}`}
             key={producto.id}
-            bg={colors.secondary}
+            bg={colors.bgPrimary}
             
             borderRadius="xl"
             boxShadow="lg"
