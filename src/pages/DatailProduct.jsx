@@ -106,7 +106,7 @@ const DetailProduct = () => {
                 <Center mt={8}>
                     <Button
                         as={Link}
-                        to="/"
+                        to={-1}
                         bg={useColorModeValue("#3B4147", "gray.800")}
                         border="2px solid"
                         borderColor="blue.500"

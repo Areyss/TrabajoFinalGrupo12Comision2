@@ -1,15 +1,20 @@
 import { useProductos } from "../hooks/useProductos";
 import { Input, Button, Group } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppColors } from "../theme/colors";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
   const { productos, setSearchResults } = useProductos();
   const [search, setSearch] = useState("");
   const colors = useAppColors();
   const navigate = useNavigate();
+  const location = useLocation();
 
+  useEffect(() => {
+    setSearch("");
+  }, [location.pathname]);
+  
   const handleSearch = () => {
     const consulta = search.trim().toLowerCase();
     if (!consulta) {
