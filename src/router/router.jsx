@@ -11,6 +11,7 @@ import EditProduct from "../pages/EditProduct";
 import LoginPage from "../pages/LoginPage";
 import RouteProtector from "../components/RouteProtector";
 import Products from "../pages/Products";
+import AboutUs from "../pages/AboutUs";
 
 export const router = createBrowserRouter([
     {
@@ -20,7 +21,7 @@ export const router = createBrowserRouter([
         children: [
             { index: true, element: <Home /> },
             { path: '/login', element: < LoginPage /> },
-            { path: '/productos', element: <Products />},
+            { path: '/productos', element: <Products /> },
             {
                 path: 'favoritos/', element: (
                     <RouteProtector rolesPermitidos={['usuario', 'administrador']}>
@@ -37,7 +38,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'productos/:id', element: (
-                        <DetailProduct />
+                    <DetailProduct />
                 )
             },
             {
@@ -61,7 +62,7 @@ export const router = createBrowserRouter([
                     </RouteProtector>
                 )
             },
-            //{ path: 'about', element: < /> },
+            { path: 'about', element: <AboutUs /> },
             { path: '*', element: <ErrorPage /> }
         ]
     }

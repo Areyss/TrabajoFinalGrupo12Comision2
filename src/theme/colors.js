@@ -51,6 +51,9 @@ export function useAppColors() {
     bgPrimary: useColorModeValue('gray.50', 'gray.950'),
 
     // Fondo del footer
-    footerBg: useColorModeValue('#E9ECEF', '#1A1A1A')
+    footerBg: useColorModeValue('#E9ECEF', '#1A1A1A'),
+
+    // Fondo para cards
+    bgCard: useColorModeValue('gray.100', '#1A1A1A')
   };
 }
