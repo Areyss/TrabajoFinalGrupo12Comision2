@@ -1,4 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { useAuth } from "../hooks/useAuth"; // Importa el contexto
+
 // Crea el contexto
 export const ProductosContext = createContext(null);
 
@@ -8,6 +10,9 @@ export const ProductosProvider = ({ children }) => {
   const [searchResults, setSearchResults] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  // Extrae el usuario desde el AuthContext
+  const { user } = useAuth();
 
   const [categorias, setCategorias] = useState([]);
 
@@ -19,7 +24,7 @@ export const ProductosProvider = ({ children }) => {
       try {
         setIsLoading(true);
         setError(null); // Reiniciar error antes de la carga
-        
+
         const response = await fetch("https://fakestoreapi.com/products");
         if (!response.ok) {
           throw new Error(`Error: ${response.status} ${response.statusText}`);
@@ -48,6 +53,17 @@ export const ProductosProvider = ({ children }) => {
     fetchProductos();
   }, []);
 
+  // Se ejecuta cada vez que cambia el estado de user
+  useEffect(() => {
+    // Si no hay usuario
+    if (!user) {
+      // Reinicia todos los productos, marcando el atributo favorito en false
+      setProductos(prev =>
+        prev.map(p => ({ ...p, favorito: false }))
+      );
+    }
+  }, [user]); // Dependencia: solo se ejecuta cuando cambia el usuario
+
   // Función para agregar un producto
   const addProducto = (nuevoProducto) => {
     // Generar un id único 
@@ -67,7 +83,7 @@ export const ProductosProvider = ({ children }) => {
       cat => cat.trim().toLowerCase() === nombreNormalizado
     );
     if (existe) return; // No agregar duplicados
-    setCategorias([...categorias, nombre .trim()]);
+    setCategorias([...categorias, nombre.trim()]);
 
   };
 
@@ -128,7 +144,7 @@ export const ProductosProvider = ({ children }) => {
     isLoading,
   }), [productos, searchResults, categorias, favoritos, isLoading]);
 
-  
+
 
   return (
     <ProductosContext.Provider value={contextValue}>
