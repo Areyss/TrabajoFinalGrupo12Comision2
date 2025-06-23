@@ -4,6 +4,7 @@ import { useProductos } from "../hooks/useProductos";
 import { useAppColors } from "../theme/colors";
 import ProductRating from "../components/ProductRating";
 import { useNavigate } from "react-router-dom";
+import FavoriteButton from "../components/FavoriteButton";
 const DetailProduct = () => {
     const { id } = useParams();
     const { productos } = useProductos();
@@ -48,7 +49,8 @@ const DetailProduct = () => {
                             bg="white"
                         />
                     </Box>
-                    <Stack gap="1" textAlign="center" flex="1" border="1px solid" borderColor="gray.300" p={6} borderRadius="lg" height="100%" minH={"500px"}>
+                    <Stack gap="1" textAlign="center" flex="1" border="1px solid" borderColor="gray.300" p={6} borderRadius="lg" height="100%" minH={"500px"} position={"relative"}>
+                        <FavoriteButton productoId ={ producto.id } />
                         <Text textAlign="start" fontSize="md" color="gray.400">
                             Categoría: {producto.category}
                         </Text>

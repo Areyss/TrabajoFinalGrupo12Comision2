@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { useAuth } from "../hooks/useAuth"; // Importa el contexto
 
 // Crea el contexto
 export const ProductosContext = createContext(null);
@@ -11,12 +10,8 @@ export const ProductosProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Extrae el usuario desde el AuthContext
-  const { user } = useAuth();
-
   const [categorias, setCategorias] = useState([]);
 
-  const [favoritos, setFavoritos] = useState([]);
 
   useEffect(() => {
     const fetchProductos = async () => {
@@ -53,16 +48,6 @@ export const ProductosProvider = ({ children }) => {
     fetchProductos();
   }, []);
 
-  // Se ejecuta cada vez que cambia el estado de user
-  useEffect(() => {
-    // Si no hay usuario
-    if (!user) {
-      // Reinicia todos los productos, marcando el atributo favorito en false
-      setProductos(prev =>
-        prev.map(p => ({ ...p, favorito: false }))
-      );
-    }
-  }, [user]); // Dependencia: solo se ejecuta cuando cambia el usuario
 
   // Función para agregar un producto
   const addProducto = (nuevoProducto) => {
@@ -117,15 +102,6 @@ export const ProductosProvider = ({ children }) => {
       )
     );
   };
-  const toggleFavorito = (idProducto) => {
-    setProductos(prev =>
-      prev.map(producto =>
-        producto.id === idProducto
-          ? { ...producto, favorito: !producto.favorito }
-          : producto
-      )
-    );
-  };
 
   const contextValue = useMemo(() => ({
     productos,
@@ -139,10 +115,8 @@ export const ProductosProvider = ({ children }) => {
     updateProducto,
     categorias,
     addCategoria,
-    favoritos,
-    toggleFavorito,
     isLoading,
-  }), [productos, searchResults, categorias, favoritos, isLoading]);
+  }), [productos, searchResults, categorias, isLoading]);
 
 
 

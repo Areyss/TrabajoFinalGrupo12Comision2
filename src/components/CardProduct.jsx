@@ -8,8 +8,7 @@ const CardProduct = ({
   user,
   onVerDetalles,
   onEditar,
-  onEliminar,
-  onToggleFavorito
+  onEliminar
 }) => {
     return (
         <Box 
@@ -40,8 +39,7 @@ const CardProduct = ({
             </Center>
 
             <FavoriteButton 
-                isFavorite={producto.favorito}
-                onToggle={onToggleFavorito}
+                productoId={producto.id}
             />
 
             <Flex justify="space-between" flexDirection={"column"} px={6} py={1} gap={1}>

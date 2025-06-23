@@ -8,7 +8,7 @@ import SortMenuButton from "../components/SortMenuButton";
 import { useMemo, useState } from "react";
 
 const Products = () => {
-  const { searchResults, productos, toggleFavorito } = useProductos();
+  const { searchResults, productos } = useProductos();
   const colors = useAppColors();
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -49,7 +49,6 @@ const Products = () => {
               onVerDetalles={() => navigate(`/productos/${producto.id}`)}
               onEditar={() => navigate(`/productos/editar/${producto.id}`)}
               onEliminar={() => navigate(`/productos/eliminar/${producto.id}`)}
-              onToggleFavorito={() => toggleFavorito(producto.id)}
             />
           ))}
         </SimpleGrid>

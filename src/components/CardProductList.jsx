@@ -8,8 +8,7 @@ const CardProductList = ({
   user,
   onVerDetalles,
   onEditar,
-  onEliminar,
-  onToggleFavorito
+  onEliminar
 }) => (
   <Flex
     key={producto.id}
@@ -63,8 +62,7 @@ const CardProductList = ({
       </Flex>
     </Box>
     <FavoriteButton
-                isFavorite={producto.favorito}
-                onToggle={onToggleFavorito}
+                productoId={producto.id}
             />
   </Flex>
 );

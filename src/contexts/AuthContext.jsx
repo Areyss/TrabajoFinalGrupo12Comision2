@@ -9,6 +9,7 @@ export const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
     // Estado para el usuario autenticado
     const [user, setUser] = useState(null);
+    // const [favoritos, setFavoritos] = useState([]);
     // Solo con la intencion de pensar en cargas asincronas de datos
     const [isLoading, setIsLoading] = useState(false);
     // Variable de error
@@ -45,8 +46,9 @@ export function AuthProvider({ children }) {
             if (usuarioEncontrado) {
                 // Remueve la contraseña antes de guardar el usuario
                 const { password, ...userWithoutPassword } = usuarioEncontrado;
-                setUser(userWithoutPassword);
-                localStorage.setItem('user', JSON.stringify(userWithoutPassword));
+                const favoritosGuardados = JSON.parse(localStorage.getItem(`favoritos_${userWithoutPassword.id}`)) || [];
+                setUser({ ...userWithoutPassword, favoritos: favoritosGuardados}); //añade la propiedad favoritos
+                localStorage.setItem('user', JSON.stringify({ ...userWithoutPassword, favoritos: favoritosGuardados}));
                 setIsLoading(false);
                 setErrorLogin(null);
                 navigate('/');
@@ -65,6 +67,21 @@ export function AuthProvider({ children }) {
         }
     };
 
+    //funcion para activar o desactivar el favorito
+    const toggleFavorito = (idProducto) => {
+        setUser(prevUser => {
+            if (!prevUser) return prevUser;
+            const favoritos = prevUser.favoritos || [];
+            const yaEsFavorito = favoritos.includes(idProducto);
+            const nuevosFavoritos = yaEsFavorito
+                ? favoritos.filter(id => id !== idProducto)
+                : [...favoritos, idProducto];
+            const updatedUser = { ...prevUser, favoritos: nuevosFavoritos };
+            localStorage.setItem(`favoritos_${prevUser.id}`,JSON.stringify(nuevosFavoritos));
+            localStorage.setItem('user', JSON.stringify(updatedUser));
+            return updatedUser;
+        });
+    };
     // Función para cerrar sesión
     const logout = useCallback(() => {
         setUser(null);
@@ -78,7 +95,8 @@ export function AuthProvider({ children }) {
         isLoading,
         logout,
         login,
-        errorLogin
+        errorLogin,
+        toggleFavorito
     }), [user, isLoading, logout, login, errorLogin]);
 
     // Provee el valor del conteto a los hijos
