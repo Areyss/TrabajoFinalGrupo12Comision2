@@ -18,7 +18,7 @@ const FavoriteProducts = () => {
     const { productos, toggleFavorito } = useProductos();
     const { user } = useAuth();
     const productosFavoritos = productos.filter(p => p.favorito && p.disponible);
-
+    
     return (
         <Box py={5} px={5}>
             <Flex

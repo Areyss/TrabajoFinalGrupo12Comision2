@@ -2,9 +2,9 @@
   {
     "id": 1,
     "nombreCompleto": "Ariel Reyes",
-    "contacto": " ",
-    "rol": " ",
-    "descripcion": " ",
+    "contacto": "https://github.com/Areyss",
+    "rol": "Desarrollador",
+    "descripcion": "Encargado del codigo y mantiene del sitio, tanto frontend como backend.",
     "foto": "https://avatars.githubusercontent.com/u/112135522?v=4"
   },
   {
@@ -12,7 +12,7 @@
     "nombreCompleto": "Joel Garcia",
     "contacto": "https://github.com/JoelGarcia21",
     "rol": "Desarrollador",
-    "descripcion": "Encargado de la genstión de usuarios.",
+    "descripcion": "Encargado de administrar cuentas, roles y accesos de los usuarios.",
     "foto": "https://avatars.githubusercontent.com/u/131055621?v=4"
   }
 ]
