@@ -59,7 +59,6 @@ const Home = () => {
                         onVerDetalles={() => navigate(`/productos/${producto.id}`)}
                         onEditar={() => navigate(`/productos/editar/${producto.id}`)}
                         onEliminar={() => navigate(`/productos/eliminar/${producto.id}`)}
-                        onToggleFavorito={() => toggleFavorito(producto.id)}
                     />
                 ))}
             </SimpleGrid>

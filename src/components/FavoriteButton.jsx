@@ -5,10 +5,12 @@ import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { useAppColors } from "../theme/colors";
 
-const FavoriteButton = ({ isFavorite, onToggle }) => {
-  const { user } = useAuth();
+const FavoriteButton = ({ productoId }) => {
+  const { user, toggleFavorito } = useAuth();
   const navigate = useNavigate();
   const colors = useAppColors();
+
+  const isFavorite = !!user?.favoritos?.includes(productoId);
 
   const handleClick = (e) => {
     e.stopPropagation();
@@ -17,7 +19,7 @@ const FavoriteButton = ({ isFavorite, onToggle }) => {
       navigate("/login");
       return;
     }
-    onToggle();
+    toggleFavorito(productoId);
   };
 
   return (

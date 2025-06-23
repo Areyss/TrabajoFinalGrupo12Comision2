@@ -15,12 +15,13 @@ import { useAuth } from "../hooks/useAuth";
 const FavoriteProducts = () => {
     const colors = useAppColors();
     const navigate = useNavigate();
-    const { productos, toggleFavorito } = useProductos();
+    const { productos } = useProductos();
     const { user } = useAuth();
-    const productosFavoritos = productos.filter(p => p.favorito && p.disponible);
+    const favoritos = user?.favoritos || [];
+    const productosFavoritos = productos.filter(p => favoritos.includes(p.id) && p.disponible);
     
     return (
-        <Box py={5} px={5}>
+        <Box py={2} px={5}>
             <Flex
                 justify="space-between"
                 align="center"
@@ -29,7 +30,7 @@ const FavoriteProducts = () => {
             >
                 <Box flex="1" textAlign="center">
                     <Text fontFamily="sans-serif" fontSize={30}>
-                        Productos favoritos
+                        Mis Favoritos
                     </Text>
                 </Box>
             </Flex>
