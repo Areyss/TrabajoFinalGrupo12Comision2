@@ -15,6 +15,5 @@ createRoot(document.getElementById('root')).render(
         </ProductosProvider>
       </Provider>
     </AuthProvider>
-
   </StrictMode>,
 )

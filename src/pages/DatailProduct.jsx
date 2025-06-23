@@ -1,33 +1,19 @@
-import {
-    Box,
-    Heading,
-    Flex,
-    Image,
-    Text,
-    Stack,
-    Button,
-    Center,
-} from "@chakra-ui/react";
+import { Box, Heading, Flex, Image, Text, Stack, Button, Center } from "@chakra-ui/react";
 import { Link, useParams } from "react-router-dom";
 import { useProductos } from "../hooks/useProductos";
 import { useAppColors } from "../theme/colors";
 import ProductRating from "../components/ProductRating";
-import { useColorModeValue } from "../components/ui/color-mode";
-import FavoriteButton from "../components/FavoriteButton";
-
+import { useNavigate } from "react-router-dom";
 const DetailProduct = () => {
     const { id } = useParams();
-    const { productos, toggleFavorito } = useProductos();
+    const { productos } = useProductos();
     const colors = useAppColors();
+    const navigate = useNavigate();
     const producto = productos.find((p) => p.id === parseInt(id));
 
     if (!producto) {
         return (
-            <Center minH="60vh">
-                <Text fontSize="xl" color="gray.400">
-                    Producto no encontrado.
-                </Text>
-            </Center>
+            navigate("/errorPage")
         );
     }
 
@@ -43,8 +29,6 @@ const DetailProduct = () => {
                 overflow="hidden"
                 p={6}
             >
-
-
                 <Flex
                     direction={{ base: "column", md: "row" }}
                     align="flex-start"
@@ -64,13 +48,7 @@ const DetailProduct = () => {
                             bg="white"
                         />
                     </Box>
-
-
-                    <Stack gap="1" textAlign="center" flex="1" border="1px solid" borderColor="gray.300" p={6} borderRadius="lg" height="100%" minH={"500px"} position={"relative"}>
-                        <FavoriteButton
-                            isFavorite={producto.favorito}
-                            onToggle={() => toggleFavorito(producto.id)}
-                        />
+                    <Stack gap="1" textAlign="center" flex="1" border="1px solid" borderColor="gray.300" p={6} borderRadius="lg" height="100%" minH={"500px"}>
                         <Text textAlign="start" fontSize="md" color="gray.400">
                             Categoría: {producto.category}
                         </Text>
@@ -93,9 +71,7 @@ const DetailProduct = () => {
                             {producto.description}
                         </Text>
 
-
                         {/* Agregar más información */}
-
 
                         <Box justifyContent={"center"} fontSize="md" color="gray.400" mt="auto">
                             Número de comentarios: {producto.rating?.count}
@@ -106,7 +82,7 @@ const DetailProduct = () => {
                 <Center mt={8}>
                     <Button
                         as={Link}
-                        to={-1}
+                        to="/"
                         bg={colors.bgCard}
                         border="2px solid"
                         borderColor="blue.500"
@@ -116,7 +92,6 @@ const DetailProduct = () => {
                         px={8}
                         borderRadius="full"
                         boxShadow="md"
-
                     >
                         Volver al inicio
                     </Button>

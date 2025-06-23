@@ -3,7 +3,7 @@ import { Link as RouterLink, useParams } from "react-router-dom";
 import { useProductos } from "../hooks/useProductos";
 import { useAppColors } from "../theme/colors";
 import { useColorModeValue } from "../components/ui/color-mode";
-import { color } from "framer-motion";
+
 const DeleteButton = () => {
     const { id } = useParams();
     const { productos, deleteProducto } = useProductos();
@@ -29,17 +29,7 @@ const DeleteButton = () => {
         );
     }
     return (
-        <Box
-            maxW="450px"
-            mx="auto"
-            mt={20}
-            borderRadius="xl"
-            boxShadow="lg"
-            bg={colors.secondary}
-            textAlign="center"
-            overflow={"hidden"}
-        >
-            
+        <Box maxW="450px" mx="auto" mt={20} borderRadius="xl" boxShadow="lg" bg={colors.secondary} textAlign="center" overflow={"hidden"}>
             <Center p={4} border="1px solid" borderColor={colors.secondary} bg="white">
                 <Image
                     src={producto.image}
@@ -51,9 +41,11 @@ const DeleteButton = () => {
                     p={2}
                 />
             </Center>
+
             <Text fontSize="xl" fontWeight="semiBold" color={colors.text} mt={4}>
                 ¿Estás seguro de que deseas eliminar "{producto.title}"?
             </Text>
+
             <Flex justify="center" gap={4} padding={4}>
                 <Button
                     bg={useColorModeValue("#3B4147", "gray.800")}
@@ -67,6 +59,7 @@ const DeleteButton = () => {
                 >
                     Sí
                 </Button>
+
                 <Button
                     bg={useColorModeValue("#3B4147", "gray.800")}
                     border="2px solid"

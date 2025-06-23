@@ -5,15 +5,16 @@ import usersData from "../data/users.json";
 // Se crea el contexto
 export const AuthContext = createContext(null);
 
-// 2. Componente Proveedor del Contexto de Autenticacién
+// Componente Proveedor del contexto
 export function AuthProvider({ children }) {
+    // Estado para el usuario autenticado
     const [user, setUser] = useState(null);
-    // Solo con la intencién de pensar en cargas asincronas de datos
+    // Solo con la intencion de pensar en cargas asincronas de datos
     const [isLoading, setIsLoading] = useState(false);
-    // Variable de error para el login
+    // Variable de error
     const [errorLogin, setErrorLogin] = useState(null);
 
-    // Restaurar usuario del localStorage al cargar la app
+    // Al iniciar la app, restaurar el usuario desde localStorage si existe
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
         if (storedUser) {
@@ -21,12 +22,14 @@ export function AuthProvider({ children }) {
         }
     }, []);
 
+    // Función que maneja el submit del formulario
     const login = (navigate) => (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Previene recarga del formulario
         const form = e.target;
         const username = form.elements.username.value;
         const password = form.elements.password.value;
 
+        // Validación de campos vacíos
         if (!username || !password) {
             setErrorLogin('No puede enviar ningun campo vacio.');
             return;
@@ -34,11 +37,13 @@ export function AuthProvider({ children }) {
 
         setIsLoading(true);
         try {
+            // Busca un usuario que coincida con las credenciales
             const usuarioEncontrado = usersData.find(
                 u => u.username === username && u.password === password
             );
 
             if (usuarioEncontrado) {
+                // Remueve la contraseña antes de guardar el usuario
                 const { password, ...userWithoutPassword } = usuarioEncontrado;
                 setUser(userWithoutPassword);
                 localStorage.setItem('user', JSON.stringify(userWithoutPassword));
@@ -52,6 +57,7 @@ export function AuthProvider({ children }) {
                 setErrorLogin('Usuario o contraseña incorrectos, intentelo nuevamente');
             }
         } catch (error) {
+            // Manejo de errores inesperados
             console.error('Error inesperado:', error.message);
             setUser(null);
             setIsLoading(false);
@@ -59,11 +65,13 @@ export function AuthProvider({ children }) {
         }
     };
 
+    // Función para cerrar sesión
     const logout = useCallback(() => {
         setUser(null);
-         localStorage.removeItem('user');
+        localStorage.removeItem('user');
     }, []);
 
+    // Memoriza el valor del contexto para evitar renders innecesarios
     const authContextValue = useMemo(() => ({
         user,
         isAuthenticated: !!user,

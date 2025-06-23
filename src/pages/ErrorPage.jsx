@@ -3,14 +3,12 @@ import { Link } from "react-router-dom";
 import { TfiFaceSad } from "react-icons/tfi";
 const ErrorPage = () => {
     return (
-        <Center minH="60vh" p={6}>
-            <Box
-                p={6}
-                textAlign="center"
-            >
+        <Center Center minH="70vh" px={4}>
+            <Box p={6} textAlign="center">
                 <Text fontSize="4xl" fontWeight="bold" mb={4}>
                     Error 404
                 </Text>
+
                 <Center m={5}>
                     <TfiFaceSad size={100}/>
                 </Center>
@@ -21,15 +19,7 @@ const ErrorPage = () => {
                 </Text>
 
                 <Stack direction="column" align="center" spacing={4}>
-                    <Button
-                        as={Link}
-                        to="/"
-                        colorScheme="blue"
-                        size="lg"
-                        boxShadow="md"
-                        _hover={{ transform: "scale(1.05)" }}
-                        borderRadius="full"
-                    >
+                    <Button as={Link} to="/" colorScheme="blue" size="lg" boxShadow="md" _hover={{ transform: "scale(1.05)" }} borderRadius="full">
                         Volver al inicio
                     </Button>
 
