@@ -1,18 +1,9 @@
-import {
-    Box,
-    SimpleGrid,
-    Image,
-    Link,
-    Center,
-    Text,
-    Button,
-    Flex
-} from "@chakra-ui/react";
+import { Box, SimpleGrid, Image, Center, Text, Button, Flex, Link } from "@chakra-ui/react";
 import { BiArrowBack } from "react-icons/bi";
 import { useAppColors } from "../theme/colors";
 import { useProductos } from "../hooks/useProductos";
 import { useColorModeValue } from "../components/ui/color-mode";
-import { useNavigate, Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 const RestoreProducts = () => {
     const { productos, restoreProducto } = useProductos();

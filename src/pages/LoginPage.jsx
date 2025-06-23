@@ -1,16 +1,4 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Image,
-  Input,
-  Text,
-  VStack,
-  InputGroup,
-  Link,
-  Center
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Image, Input, Text, VStack, InputGroup, Link } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { useAppColors } from "../theme/colors";

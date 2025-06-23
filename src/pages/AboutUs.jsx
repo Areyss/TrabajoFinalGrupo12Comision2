@@ -1,20 +1,9 @@
-import {
-  Box,
-  Heading,
-  Text,
-  SimpleGrid,
-  Image,
-  VStack,
-  Button,
-  Link,
-  Icon,
-  Avatar,
-  Flex
-} from "@chakra-ui/react";
+import { Box, Heading, Text, SimpleGrid, Image, VStack, Link, Icon, Avatar, Flex } from "@chakra-ui/react";
 import { FaGithub } from "react-icons/fa";
 import creadores from "../data/developers.json";
 import { useAppColors } from "../theme/colors";
 import Comentarios from "../data/comments.json";
+
 const AboutUs = () => {
   const colors = useAppColors();
   return (

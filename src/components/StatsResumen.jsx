@@ -1,13 +1,4 @@
-import {
-  Stat,
-  HStack,
-  Badge,
-  FormatNumber,
-  Box,
-  GridItem,
-  SimpleGrid,
-  Center,
-} from "@chakra-ui/react";
+import { Stat, HStack, Badge, FormatNumber, GridItem, SimpleGrid, Center } from "@chakra-ui/react";
 
 const StatsResumen = () => {
   return (
