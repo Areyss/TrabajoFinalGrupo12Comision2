@@ -48,10 +48,10 @@ const DeleteButton = () => {
 
             <Flex justify="center" gap={4} padding={4}>
                 <Button
-                    bg={useColorModeValue("#3B4147", "gray.800")}
+                    bg={colors.bgCard}
                     border="2px solid"
-                    borderColor="red.500"
-                    color="red.500"
+                    borderColor={colors.danger}
+                    color={colors.danger}
                     _hover={{ transform: "scale(1.05)" }}
                     onClick={() => deleteProducto(producto.id)}
                     as={RouterLink}
@@ -61,10 +61,10 @@ const DeleteButton = () => {
                 </Button>
 
                 <Button
-                    bg={useColorModeValue("#3B4147", "gray.800")}
+                    bg={colors.bgCard}
                     border="2px solid"
-                    borderColor="gray.500"
-                    color="gray.200"
+                    borderColor={colors.gray}
+                    color={colors.gray}
                     _hover={{ transform: "scale(1.05)" }}
                     as={RouterLink}
                     to="/"

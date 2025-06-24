@@ -1,4 +1,4 @@
-import { Box, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, SimpleGrid, Text, Flex } from "@chakra-ui/react";
 import { useProductos } from "../hooks/useProductos";
 import { useAppColors } from "../theme/colors";
 import { useNavigate } from "react-router-dom";
@@ -26,12 +26,17 @@ const Products = () => {
 }, [productosFiltrados, sortType]);
   return (
     <Box py={1} px={5}>
-      <Text fontFamily="sans-serif" fontSize={30} mb={1} textAlign="center">
-        Resultados de búsqueda
-      </Text>
-      <Box display="flex" justifyContent="flex-end" mb={2}>
+      <Flex
+        justify="space-between"
+        align="center"
+        mx="auto"
+        mb={3}
+      >
+        <Text fontFamily="sans-serif" fontSize={30} textAlign="center" fontWeight={"semibold"} color={colors.primary}>
+          Resultados de búsqueda
+        </Text>
         <SortMenuButton sortType={sortType} setSortType={setSortType} />
-      </Box>
+      </Flex>
       {productosAMostrar.length === 0 ? (
         <Box textAlign="center" mt={10}>
           <Text fontSize="xl" color="gray.400">

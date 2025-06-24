@@ -1,7 +1,5 @@
-import {
-    Button, Box, Field, Fieldset, Input, InputGroup, Stack, Textarea, Portal, Select, createListCollection, Heading
-} from '@chakra-ui/react';
-import { useState, useMemo } from 'react';
+import { Button, Box, Field, Fieldset, Input, InputGroup, Stack, Textarea, Portal, Select, createListCollection, Heading } from '@chakra-ui/react';
+import { useState, useMemo, useEffect } from 'react';
 import { useProductos } from '../hooks/useProductos';
 import { useNavigate } from 'react-router-dom';
 import AgregarCategoriaPopover from "./AgregarCategoriaPopover";
@@ -36,7 +34,18 @@ const ProductsForm = ({ productoEditar = null}) => {
         }),
         [categorias]
     );
-
+    // Limpia el error general si todos los campos son válidos
+useEffect(() => {
+    if (
+        title &&
+        description &&
+        esPrecioValido(price) &&
+        category[0] &&
+        esUrlImagenValida(image)
+    ) {
+        setFormError('');
+    }
+}, [title, description, price, category, image]);
     // Validaciones
     function esUrlImagenValida(url) {
         return /^https?:\/\/.+\.(jpg|jpeg|png|webp|gif)$/i.test(url.trim());

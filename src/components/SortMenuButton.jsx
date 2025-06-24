@@ -24,7 +24,7 @@ const SortMenuButton = ({ sortType, setSortType }) => {
             <Menu.Item onClick={() => handleSort("precio-menor")}>
               Menor Precio
             </Menu.Item>
-            <Menu.Item onClick={() => handleSort("Valoración")}>
+            <Menu.Item onClick={() => handleSort("valoracion")}>
               Valoración
             </Menu.Item>
           </Menu.Content>

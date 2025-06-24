@@ -117,8 +117,12 @@ const NavBar = () => {
           >
             Acerca de
           </Link>
-          <UserMenuButton />
+          
+          
         </HStack>
+
+              <UserMenuButton />
+
       </Flex>
     </Box>
   );

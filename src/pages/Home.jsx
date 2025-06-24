@@ -10,19 +10,19 @@ import ProductSkeleton from "../components/ProductSkeleton";
 const Home = () => {
     const colors = useAppColors();
     const navigate = useNavigate();
-    const { productos, toggleFavorito, isLoading } = useProductos();
+    const { productos, isLoading } = useProductos();
     const { user } = useAuth();
     const productosDisponibles = productos.filter(p => p.disponible);
     return (
-        <Box py={5} px={5}>
+        <Box py={1} px={5}>
             <Flex
                 justify="space-between"
                 align="center"
                 mx="auto"
                 mb={5}
             >
-                <Box flex="1" textAlign="center">
-                    <Text fontFamily="sans-serif" fontSize={30}>
+                <Box flex="1" >
+                    <Text fontFamily="sans-serif" fontSize={30} fontWeight={"semibold"} color={colors.primary}>
                         Lista de productos
                     </Text>
                 </Box>

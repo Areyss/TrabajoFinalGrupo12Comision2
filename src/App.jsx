@@ -1,5 +1,5 @@
 import { Outlet, useLocation, useNavigate } from "react-router-dom"
-import { Box, Flex, Container, Text, Center, Image } from "@chakra-ui/react"
+import { Box, Flex, Container, Text, Center, Image, Bleed } from "@chakra-ui/react"
 import Navbar from "./components/NavBar"
 import { ColorModeButton } from "./components/ui/color-mode"
 import { useAppColors } from "../src/theme/colors"
@@ -18,7 +18,7 @@ const App = () => {
 
       <Box as="header" bg={colors.primary} color="white" boxShadow="md">
         <Container >
-          <Flex justifyContent='space-between' py={2}>
+          <Flex justifyContent='space-between' py={2} position={"relative"}>
             <Center onClick={() => navigate('/')} cursor="pointer">
               <Image src="/logo.png"
                     alt="logoTienda"

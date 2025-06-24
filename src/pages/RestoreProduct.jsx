@@ -10,15 +10,15 @@ const RestoreProducts = () => {
     const colors = useAppColors();
     const productosEliminados = productos.filter(p => !p.disponible);
     return (
-        <Box py={10} px={5}>
+        <Box py={1} px={5}>
             <Flex
                 justify="space-between"
                 align="center"
                 mx="auto"
                 mb={5}
             >
-                <Box flex="1" textAlign="center" >
-                    <Text fontFamily="sans-serif" fontSize={30}>
+                <Box flex="1">
+                    <Text fontFamily="sans-serif" fontSize={30} fontWeight={"semibold"} color={colors.primary}>
                         Papelera
                     </Text>
                 </Box>
@@ -41,18 +41,14 @@ const RestoreProducts = () => {
                     {productosEliminados.map((producto) => (
                         <Box
                             key={producto.id}
-                            bg={useColorModeValue("#3B4147", "gray.800")}
-                            p={6}
+                            bg={colors.bgPrimary}
                             borderRadius="xl"
                             boxShadow="lg"
                             _hover={{ boxShadow: "xl", transform: "scale(1.02)", transition: "0.3s" }}
                             textAlign="center" 
+                            overflow={"hidden"}
                         >
-                            <Text fontSize="xl" fontWeight="bold" color={colors.textPrimary} mb={4}>
-                                {producto.title}
-                            </Text>
-
-                            <Center mb={4}>
+                            <Center p={4} border="1px solid" borderColor={colors.secondary} bg="white">
                                 <Image
                                     src={producto.image}
                                     alt={producto.title}
@@ -63,18 +59,22 @@ const RestoreProducts = () => {
                                     p={2}
                                 />
                             </Center>
+                            <Text fontSize="xl" fontWeight="bold" color={colors.textColor} mt={4}>
+                                {producto.title}
+                            </Text>                
                            
                             <Text fontSize="lg" fontWeight="semibold" color={colors.success} mb={4}>
                                 ${producto.price.toFixed(2)}
                             </Text>
 
                             <Button
-                                bg={useColorModeValue("#3B4147", "gray.800")}
+                                bg={colors.bgCard}
                                 border="2px solid"
-                                borderColor="green.500"
-                                color="green.500"
+                                borderColor={colors.success}
+                                color={colors.success}
                                 _hover={{ transform: "scale(1.05)" }}
                                 size="lg"
+                                mb={4}
                                 onClick={() => restoreProducto(producto.id)}
                             >
                                 Restaurar
