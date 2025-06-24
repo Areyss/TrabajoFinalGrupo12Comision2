@@ -1,14 +1,7 @@
-import {
-    Box,
-    SimpleGrid,
-    Flex,
-    Text,
-    Button,
-} from "@chakra-ui/react";
+import { Box, SimpleGrid, Flex, Text } from "@chakra-ui/react";
 import { useAppColors } from "../theme/colors";
 import { useProductos } from "../hooks/useProductos";
 import { useNavigate } from "react-router-dom";
-import { BiSolidTrashAlt } from "react-icons/bi";
 import CardProduct from "../components/CardProduct";
 import { useAuth } from "../hooks/useAuth";
 
@@ -21,15 +14,15 @@ const FavoriteProducts = () => {
     const productosFavoritos = productos.filter(p => favoritos.includes(p.id) && p.disponible);
     
     return (
-        <Box py={2} px={5}>
+        <Box py={1} px={5}>
             <Flex
                 justify="space-between"
                 align="center"
                 mx="auto"
                 mb={5}
             >
-                <Box flex="1" textAlign="center">
-                    <Text fontFamily="sans-serif" fontSize={30}>
+                <Box flex="1">
+                    <Text fontFamily="sans-serif" fontSize={30} fontWeight={"semibold"} color={colors.primary}>
                         Mis Favoritos
                     </Text>
                 </Box>

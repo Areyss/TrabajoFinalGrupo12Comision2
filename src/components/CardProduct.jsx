@@ -6,7 +6,6 @@ const CardProduct = ({
   producto,
   colors,
   user,
-  onVerDetalles,
   onEditar,
   onEliminar
 }) => {
@@ -52,15 +51,15 @@ const CardProduct = ({
                 </Text>
                 
                 
-                <Flex gap={3} wrap="wrap" justify="center" mb="4">
+                <Flex gap={3} wrap="wrap" justify="end" mb="4">
 
                     {user?.rol === "administrador" && (
                         <>
                             <Button
                                 bg={colors.bgCard}
                                 border="2px solid"
-                                borderColor="blue.500"
-                                color="blue.500"
+                                borderColor={colors.info}
+                                color={colors.info}
                                 size="sm"
                                 boxShadow="md"
                                 _hover={{ transform: "scale(1.05)" }}
@@ -75,8 +74,8 @@ const CardProduct = ({
                             <Button
                                 bg={colors.bgCard}
                                 border="2px solid"
-                                borderColor="red.500"
-                                color="red.500"
+                                borderColor={colors.danger}
+                                color={colors.danger}
                                 size="sm"
                                 boxShadow="md"
                                 _hover={{ transform: "scale(1.05)" }}

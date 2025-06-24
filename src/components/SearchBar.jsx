@@ -12,7 +12,7 @@ const SearchBar = () => {
   const location = useLocation();
 
   useEffect(() => {
-    setSearch("");
+    if(location.pathname!="/productos") setSearch("");
   }, [location.pathname]);
   
   const handleSearch = () => {
@@ -30,7 +30,7 @@ const SearchBar = () => {
   };
 
   return (
-    <Group attached w="full" maxW="2xl">
+    <Group attached w="full" maxW="2xl" position={"absolute"} top="50%" right="0%" transform={"translate(-50%,-50%)"}>
       <Input
         placeholder="Buscar productos por Nombre o Categoría"
         value={search}
@@ -39,8 +39,9 @@ const SearchBar = () => {
         bg="white"
         border="0px"
         color={"black"}
+        css={{"--focus-color":`${colors.accent}`}}
       />
-      <Button bg={colors.accent} color={"black"} onClick={handleSearch} border="0px">
+      <Button bg={colors.accent} color={"black"} onClick={handleSearch} border="0px" _hover={{bg: colors.hoverAccent}}>
         Buscar
       </Button>
     </Group>

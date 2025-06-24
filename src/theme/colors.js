@@ -14,6 +14,9 @@ export function useAppColors() {
     // Color de acento (detalles, hover de links, badges, iconos destacados)
     accent: useColorModeValue('#FFD600', '#FFB300'),
 
+    //Hover para el color de acento
+    hoverAccent: useColorModeValue('#FFC107', '#FF8F00'),
+
     // Texto principal sobre fondos destacados (ej: botones primary)
     textPrimary: useColorModeValue('white', '#E9ECEF'),
 
@@ -24,7 +27,7 @@ export function useAppColors() {
     textColor: useColorModeValue("gray.700", "gray.200"),
 
     // Color para acciones destructivas (borrar, advertencias críticas)
-    danger: useColorModeValue('#c95965', '#C43F4E'),
+    danger: useColorModeValue('#D84315', '#FF8A65'),
 
     // Hover para botones de peligro
     dangerHover: useColorModeValue('#A13340', '#C43F4E'),
@@ -42,7 +45,7 @@ export function useAppColors() {
     info: useColorModeValue('blue.500', 'blue.300'),
 
     // Bordes, iconos, textos deshabilitados
-    gray: useColorModeValue('gray.500', 'gray.700'),
+    gray: useColorModeValue('gray.500', 'gray.400'),
 
     // Fondo general de la app
     bg: useColorModeValue('gray.100', 'black.800'),

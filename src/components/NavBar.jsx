@@ -1,4 +1,4 @@
-import { HStack, Link, Box, Flex, Button, Center, Menu, Portal } from "@chakra-ui/react";
+import { HStack, Link, Box, Flex } from "@chakra-ui/react";
 import { useLocation, NavLink as RouterLink, useNavigate} from "react-router-dom";
 import { useAppColors } from "../theme/colors";
 import { useAuth } from "../hooks/useAuth";
@@ -6,7 +6,7 @@ import UserMenuButton from "./UserMenuButton";
 
 const NavBar = () => {
   const colors = useAppColors();
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -117,8 +117,10 @@ const NavBar = () => {
           >
             Acerca de
           </Link>
-          <UserMenuButton />
+          
+          
         </HStack>
+          <UserMenuButton />
       </Flex>
     </Box>
   );
