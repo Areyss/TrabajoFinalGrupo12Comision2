@@ -9,7 +9,6 @@ export const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
     // Estado para el usuario autenticado
     const [user, setUser] = useState(null);
-    // const [favoritos, setFavoritos] = useState([]);
     // Solo con la intencion de pensar en cargas asincronas de datos
     const [isLoading, setIsLoading] = useState(false);
     // Variable de error

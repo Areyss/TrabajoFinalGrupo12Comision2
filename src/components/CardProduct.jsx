@@ -6,7 +6,6 @@ const CardProduct = ({
   producto,
   colors,
   user,
-  onVerDetalles,
   onEditar,
   onEliminar
 }) => {

@@ -4,6 +4,7 @@ import { useProductos } from '../hooks/useProductos';
 import { useNavigate } from 'react-router-dom';
 import AgregarCategoriaPopover from "./AgregarCategoriaPopover";
 import { useAppColors } from '../theme/colors';
+import { validarProducto } from "../services/useValidacionesProducto";
 
 const ProductsForm = ({ productoEditar = null}) => {
     // Importa el hook useProductos para acceder a las funciones y estados del contexto
@@ -11,19 +12,22 @@ const ProductsForm = ({ productoEditar = null}) => {
     const navigate = useNavigate();
     const colors = useAppColors();
 
-
     // Si hay productoEditar, inicializa los estados con sus valores
-    const [title, setTitle] = useState(productoEditar?.title || "");
-    const [description, setDescription] = useState(productoEditar?.description || "");
-    const [price, setPrice] = useState(productoEditar?.price ? String(productoEditar.price) : "");
-    const [category, setCategory] = useState(productoEditar?.category ? [productoEditar.category] : []);
-    const [image, setImage] = useState(productoEditar?.image || "");
-
-    // Estado para manejar errores del formulario
+    const [form, setForm] = useState({
+        title: productoEditar?.title || "",
+        description: productoEditar?.description || "",
+        price: productoEditar?.price ? String(productoEditar.price) : "",
+        category: productoEditar?.category ? [productoEditar.category] : [],
+        image: productoEditar?.image || ""
+    });
+  
+    const { errores, hayErrores } = useMemo(() => validarProducto(form), [form]);
     const [formError, setFormError] = useState('');
+    
     const [submitted, setSubmitted] = useState(false); //Para mostrar los errores de validacion
     const [isSubmitting, setIsSubmitting] = useState(false); //Para el spinner de carga
 
+    
     // Adaptar categorías al formato que espera createListCollection
     const categoriasCollection = useMemo(() =>
         createListCollection({
@@ -35,50 +39,46 @@ const ProductsForm = ({ productoEditar = null}) => {
         [categorias]
     );
     // Limpia el error general si todos los campos son válidos
-useEffect(() => {
-    if (
-        title &&
-        description &&
-        esPrecioValido(price) &&
-        category[0] &&
-        esUrlImagenValida(image)
-    ) {
-        setFormError('');
-    }
-}, [title, description, price, category, image]);
-    // Validaciones
-    function esUrlImagenValida(url) {
-        return /^https?:\/\/.+\.(jpg|jpeg|png|webp|gif)$/i.test(url.trim());
-    }
-    function esPrecioValido(numero) {
-        return !isNaN(numero) && parseFloat(numero) >= 0;
+    useEffect(() => {
+        if (submitted && !hayErrores) {
+            setFormError("");
+        }
+    }, [errores, hayErrores, submitted]);
+
+    //handle para actualizar los estados del objeto form
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setForm(prev => ({...prev, [name]: value }));
+    };
+    const handleValueChange = (e) => {
+        const newValue = Array.isArray(e.value) ? e.value : [e.value]
+        setForm(prev => ({ ...prev, category: newValue }))
     }
 
     // Maneja el envío del formulario
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Validaciones simples
         setSubmitted(true);
-        if (!title || !description || !esPrecioValido(price) || !category[0] || !esUrlImagenValida(image)) {
-            setFormError("Complete todos los campos.");
+
+        if (hayErrores) {
+            setFormError("Complete todos los campos correctamente.");
             return;
         }
-        setFormError("");
+
         setIsSubmitting(true);
+
+        //Se crea el objetoProducto
         const producto = {
             ...productoEditar, // Mantiene id y otros campos si es edición
-            title,
-            description,
-            price: parseFloat(price),
-            category: category[0] || "",
-            image
+            title: form.title,
+            description: form.description,
+            price: parseFloat(form.price),
+            category: form.category[0] || "",
+            image: form.image
         };
-        if (productoEditar) {
-            updateProducto(producto);
-        } else {
-            // Si es alta, agrega el producto
-            addProducto(producto);
-        }
+        
+        //decide segun si es alta o actualizacion para ejecutar las funciones
+        productoEditar ? updateProducto(producto): addProducto(producto);
 
         setTimeout(() => {
             setIsSubmitting(false);
@@ -98,42 +98,44 @@ useEffect(() => {
                 <Fieldset.Legend>
                     <Heading size="3xl">{productoEditar ? "Editar Producto" : "Agregar Producto"}</Heading>
                 </Fieldset.Legend>
+
                 <Fieldset.Content>
-                    <Field.Root required invalid={submitted && !title}>
+                    <Field.Root required invalid={submitted && !!errores.title}>
                         <Field.Label>
                             Nombre: <Field.RequiredIndicator />
                         </Field.Label>
-                        <Input placeholder='Nombre del Producto' value={title} onChange={e => setTitle(e.target.value)} />
-                        <Field.ErrorText>El nombre es obligatorio.</Field.ErrorText>
+                        <Input name="title" placeholder='Nombre del Producto' value={form.title} onChange={handleChange} />
+                        <Field.ErrorText>{errores.title}</Field.ErrorText>
                     </Field.Root>
 
-                    <Field.Root required invalid={submitted && !description}>
+                    <Field.Root required invalid={submitted && !!errores.description}>
                         <Field.Label>
                             Descripción: <Field.RequiredIndicator />
                         </Field.Label>
-                        <Textarea placeholder='Descripción del Producto' minH={10} autoresize value={description} onChange={e => setDescription(e.target.value)} />
-                        <Field.ErrorText>La descripción es obligatoria.</Field.ErrorText>
+                        <Textarea name="description" placeholder='Descripción del Producto' minH={10} autoresize value={form.description} onChange={handleChange} />
+                        <Field.ErrorText>{errores.description}</Field.ErrorText>
                     </Field.Root>
+
                     <Box display="flex" gap={4}>
-                        <Field.Root required invalid={submitted && !esPrecioValido(price)}>
+                        <Field.Root required invalid={submitted && !!errores.price}>
                             <Field.Label>
                                 Precio: <Field.RequiredIndicator />
                             </Field.Label>
                             <InputGroup startElement="$">
-                                <Input placeholder='0,00' type='number' step={0.01} min={0} value={price} onChange={e => setPrice(e.target.value)} />
+                                <Input name="price" placeholder='0,00' type='number' step={0.01} min={0} value={form.price} onChange={handleChange} />
                             </InputGroup>
-                            <Field.ErrorText>El precio es obligatorio y debe ser mayor a 0.</Field.ErrorText>
+                            <Field.ErrorText>{errores.price}</Field.ErrorText>
                         </Field.Root>
 
-                        <Field.Root required invalid={submitted && !category[0]}>
+                        <Field.Root required invalid={submitted && !!errores.category}>
                             <Field.Label>
                                 Categoría: <Field.RequiredIndicator />
                             </Field.Label>
                             <Box display="flex" alignItems="center" gap={2} w="100%">
                                 <Select.Root
                                     collection={categoriasCollection}
-                                    value={category}
-                                    onValueChange={(e) => setCategory(e.value)}
+                                    value={form.category}
+                                    onValueChange={handleValueChange}
                                 >
                                     <Select.HiddenSelect />
 
@@ -162,23 +164,24 @@ useEffect(() => {
 
                                 <AgregarCategoriaPopover onAdd={nombre => {
                                     addCategoria(nombre);
-                                    setCategory([nombre]);
+                                    setForm(prev => ({ ...prev, category: [nombre] }));
                                 }} />
                             </Box>
-                            <Field.ErrorText>La categoría es obligatoria.</Field.ErrorText>
+                            <Field.ErrorText>{errores.category}</Field.ErrorText>
                         </Field.Root>
+
                     </Box>
-                    <Field.Root required invalid={submitted && !esUrlImagenValida(image)}>
+                    <Field.Root required invalid={submitted && !!errores.image}>
                         <Field.Label>
                             Imagen: <Field.RequiredIndicator />
                         </Field.Label>
-                        <Input placeholder='https://...' value={image} onChange={e => setImage(e.target.value)} />
+                        <Input name="image" placeholder='https://...' value={form.image} onChange={handleChange} />
                         <Field.HelperText>Ingrese el url de la imagen.</Field.HelperText>
-                        <Field.ErrorText>La imagen debe ser una URL válida que termine en .jpg, .jpeg, .png, .webp o .gif</Field.ErrorText>
-                        {esUrlImagenValida(image) && (
+                        <Field.ErrorText>{errores.image}</Field.ErrorText>
+                        {form.image && !errores.image && (
                             <Box mt={3} display="flex" justifyContent="center">
                                 <img
-                                    src={image}
+                                    src={form.image}
                                     alt="Vista previa"
                                     style={{ maxWidth: "150px", maxHeight: "150px", borderRadius: "8px", border: "1px solid #eee" }}
                                 />

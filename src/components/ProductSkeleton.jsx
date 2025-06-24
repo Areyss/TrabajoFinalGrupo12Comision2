@@ -1,10 +1,4 @@
-import {
-  Stack,
-  HStack,
-  Skeleton,
-  SkeletonCircle,
-  SkeletonText,
-} from "@chakra-ui/react";
+import { Stack, Skeleton, SkeletonText } from "@chakra-ui/react";
 
 const ProductSkeleton = () => {
     return (

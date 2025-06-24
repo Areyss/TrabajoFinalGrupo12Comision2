@@ -52,35 +52,35 @@ const CardProductList = ({
       </Stack>
       
       <Flex gap={2} mt={2}>
-        <Button 
-          size="sm" 
+        <Button
+          size="sm"
           onClick={onVerDetalles}
           bg={colors.bgCard}
-                                border="2px solid"
-                                borderColor={colors.accent}
-                                color={colors.hoverAccent}
-                                _hover={{ transform: "scale(1.05)" }}
-          >Ver detalles</Button>
+          border="2px solid"
+          borderColor={colors.accent}
+          color={colors.hoverAccent}
+          _hover={{ transform: "scale(1.05)" }}
+        >Ver detalles</Button>
         {user?.rol === "administrador" && (
           <>
-            <Button 
-              size="sm"  
+            <Button
+              size="sm"
               onClick={onEditar}
               bg={colors.bgCard}
-                                border="2px solid"
-                                borderColor={colors.info}
-                                color={colors.info}
-                                _hover={{ transform: "scale(1.05)" }}
-              >Editar</Button>
-            <Button 
-              size="sm" 
+              border="2px solid"
+              borderColor={colors.info}
+              color={colors.info}
+              _hover={{ transform: "scale(1.05)" }}
+            >Editar</Button>
+            <Button
+              size="sm"
               onClick={onEliminar}
               bg={colors.bgCard}
-                                border="2px solid"
-                                borderColor={colors.danger}
-                                color={colors.danger}
-                                _hover={{ transform: "scale(1.05)" }}
-              >Eliminar</Button>
+              border="2px solid"
+              borderColor={colors.danger}
+              color={colors.danger}
+              _hover={{ transform: "scale(1.05)" }}
+            >Eliminar</Button>
           </>
         )}
       </Flex>
